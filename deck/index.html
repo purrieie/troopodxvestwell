@@ -96,6 +96,37 @@ a.lk:hover{color:#fff;}
 .minfo{margin-top:10px;min-height:46px;font-size:13.5px;line-height:1.5;color:var(--text-body);background:rgba(124,59,237,0.06);border:1px solid var(--line-strong);border-radius:var(--r-sm);padding:9px 14px;transition:background .2s ease;}
 .minfo b{color:var(--text);}
 .minfo.flash{background:rgba(124,59,237,0.16);}
+
+/* vision slide */
+.vis{display:grid;grid-template-columns:560px 1fr;gap:22px;margin-top:20px;flex:1;min-height:0;}
+.flow{position:relative;height:100%;}
+.flow svg{position:absolute;left:0;top:0;width:560px;height:470px;overflow:visible;pointer-events:none;}
+.vn{position:absolute;width:230px;height:110px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:13px 15px;cursor:pointer;transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease,background .18s ease;}
+.vn:hover{transform:translateY(-2px);border-color:var(--line-strong);}
+.vn.sel{background:linear-gradient(160deg,var(--tint),rgba(124,59,237,0.04));border-color:var(--violet-light);box-shadow:0 0 50px -18px rgba(124,59,237,0.9);}
+.vn .k{font-family:var(--mono);font-size:11px;color:var(--violet-light);}
+.vn .t{font-size:16px;font-weight:800;margin-top:5px;letter-spacing:-.01em;}
+.vn .d{font-size:12px;color:var(--text-body);margin-top:4px;line-height:1.4;}
+.vn.gate{border-color:rgba(224,169,46,.45);}
+.vn.gate .k{color:var(--amber);}
+.gate-tag{position:absolute;font-size:11px;font-weight:700;color:var(--amber);background:rgba(224,169,46,.10);border:1px solid rgba(224,169,46,.35);border-radius:999px;padding:3px 10px;white-space:nowrap;}
+.par-tag{position:absolute;font-size:11px;font-weight:700;color:var(--violet-light);background:#1d1730;border:1px solid var(--line-strong);border-radius:999px;padding:3px 10px;white-space:nowrap;}
+.vpanel{background:var(--card);border:1px solid var(--line-strong);border-radius:var(--r-lg);padding:20px 22px;display:flex;flex-direction:column;overflow:hidden;}
+.vpanel .ph{font-size:20px;font-weight:800;letter-spacing:-.01em;margin-top:6px;}
+.vpanel .ps{font-size:13.5px;color:var(--text-body);line-height:1.5;margin-top:6px;}
+.vpanel ul.b{margin-top:10px;gap:7px;}
+.vpanel ul.b li{font-size:13px;}
+.vpanel ul.b li b{color:var(--text);font-weight:700;}
+.vpanel .sub{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:14px;}
+.bb{margin-top:10px;display:flex;flex-direction:column;gap:9px;}
+.bb .r{display:grid;grid-template-columns:120px 1fr 44px;gap:10px;align-items:center;font-size:12.5px;color:var(--text-strong);}
+.bb .tr{height:14px;border-radius:7px;background:rgba(255,255,255,.04);border:1px solid var(--line);position:relative;overflow:hidden;}
+.bb .fl{position:absolute;left:0;top:0;bottom:0;border-radius:7px;width:0;transition:width .9s cubic-bezier(.22,1,.36,1);}
+.bb .band{position:absolute;top:0;bottom:0;left:50%;width:15%;background:rgba(79,209,139,.14);border-left:1px dashed rgba(79,209,139,.5);border-right:1px dashed rgba(79,209,139,.5);}
+.bb .v{font-family:var(--mono);font-size:12.5px;text-align:right;}
+.wh{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;}
+.wh span{font-size:11.5px;font-weight:700;border-radius:999px;padding:3px 10px;border:1px solid var(--line-strong);color:var(--violet-light);background:rgba(124,59,237,.10);}
+@media print{.bb .fl{width:var(--w)!important;}}
 </style></head><body>
 <section class="slide" id="s1"><div class="layer">
 <div style="display:flex;justify-content:space-between;align-items:center;"><div class="logo cover-logo"></div><span class="pill">Executive review · October 2026</span></div>
@@ -191,6 +222,25 @@ a.lk:hover{color:#fff;}
 </div>
 <div id="minfo" class="minfo"><b>Click a metric</b> to see how the work moves it. Baselines from Vestwell's SEMrush data (April 2026).</div>
 </div><div class="foot"><div class="logo"></div><span>Vestwell × Troopod · Executive review · 06</span></div></section>
+<section class="slide" id="s7"><div class="layer">
+<div class="eyebrow">Our vision</div>
+<h2>Tracking first, <span class="grad">then growth</span></h2>
+<div class="vis">
+<div class="flow" id="flow">
+<svg>
+<path d="M280 180 V225 M140 225 H420 M140 225 V260 M420 225 V260" stroke="rgba(167,139,250,.6)" stroke-width="2" fill="none"/>
+</svg>
+<div style="position:absolute;left:165px;top:38px;width:230px;text-align:center;font-family:var(--mono);font-size:11.5px;color:var(--muted);">After Phases 1–3</div>
+<div class="vn gate sel" data-n="track" style="left:165px;top:70px;"><div class="k">NEXT · BEFORE SCALING</div><div class="t">Tracking you can trust</div><div class="d">HubSpot and GA4 fixed and aligned</div></div>
+<span class="gate-tag" style="left:408px;top:113px;">Must come first</span>
+<span class="par-tag" style="left:213px;top:214px;">Can run in parallel</span>
+<div class="vn" data-n="aeo" style="left:25px;top:260px;"><div class="k">THEN · PATH 1</div><div class="t">AEO</div><div class="d">Content, PR and AI visibility</div></div>
+<div class="vn" data-n="cro" style="left:305px;top:260px;"><div class="k">THEN · PATH 2</div><div class="t">CRO</div><div class="d">More prospects become leads</div></div>
+</div>
+<div class="vpanel" id="vpanel"></div>
+</div>
+<div style="margin-top:10px;font-size:12px;color:var(--muted);">Click a step to see what it involves. Sources: Troopod analytics audit (16–19 Oct) and bounce rate review (21 Oct).</div>
+</div><div class="foot"><div class="logo"></div><span>Vestwell × Troopod · Executive review · 07</span></div></section>
 <script>
 const D={m:[['Homepage',40,78],['ABLE page',53,72],['Blog article',52,77]],d:[['Homepage',58,73],['ABLE page',40,68],['Blog article',63,87]]};
 const LCP={m:'4.1s',d:'1.7s'};
@@ -221,4 +271,11 @@ const MI={"AI Cited Pages": "Pages that AI assistants link to as sources. Faster
 document.querySelectorAll('.mrow.clk').forEach(r=>{const show=()=>{document.querySelectorAll('.mrow.clk').forEach(x=>x.classList.remove('sel'));r.classList.add('sel');
  const box=document.getElementById('minfo');box.innerHTML='<b>'+r.dataset.k+':</b> '+MI[r.dataset.k];box.classList.add('flash');setTimeout(()=>box.classList.remove('flash'),250);};
  r.addEventListener('click',show);r.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();show();}});});
+
+const VIS={"found": "<div class=\"lab\">Now \u00b7 Phases 1\u20133</div><div class=\"ph\">Technical foundation</div>\n<div class=\"ps\">Make the site fast and easy for search engines and AI assistants to read.</div>\n<ul class=\"b\"><li>Phase 1 PageSpeed: average mobile score 48 \u2192 76, every page above 65+</li><li>Phase 2 HubSpot campaign pages: 63 missing pages and 41 broken links to fix</li><li>Phase 3 SEO/AEO tags: canonicals, titles, schema, sitemap</li></ul>", "track": "<div class=\"lab\" style=\"color:var(--amber)\">Next \u00b7 before scaling</div><div class=\"ph\">Tracking you can trust</div>\n<div class=\"ps\">AEO and CRO can only be proven with honest numbers, and today the numbers are wrong. HubSpot counts every customer log-in as a bounce, so 82% overstates real drop-off.</div>\n<div class=\"sub\">Bounce rate, same site</div>\n<div class=\"bb\" id=\"vbb\">\n<div class=\"r\"><span>HubSpot</span><div class=\"tr\"><div class=\"band\"></div><div class=\"fl\" style=\"--w:82%;background:rgba(219,106,96,.7)\"></div></div><span class=\"v b4\">82%</span></div>\n<div class=\"r\"><span>Similarweb</span><div class=\"tr\"><div class=\"band\"></div><div class=\"fl\" style=\"--w:42%;background:linear-gradient(90deg,var(--violet-deep),var(--primary))\"></div></div><span class=\"v\">42%</span></div>\n</div>\n<div style=\"font-size:11.5px;color:var(--muted);margin-top:6px;\">Green band: 50\u201365% industry benchmark. Similarweb includes log-in traffic.</div>\n<div class=\"sub\">The problems today</div><ul class=\"b\"><li><b>Engaged visitors count as bounces.</b> HubSpot only records the first page: in our test, GA4 logged 3 pages and HubSpot 1.</li><li><b>Sign-ups are invisible.</b> The sign-up and log-in apps have no HubSpot, so a visitor who signs up looks like one who left.</li><li><b>There is no single lead number.</b> HubSpot shows 2,410 form fills and GA4 857 (Sept), and demo meetings are not tracked at all.</li></ul>", "aeo": "<div class=\"lab\">Then \u00b7 path 1</div><div class=\"ph\">AEO</div>\n<div class=\"ps\">Grow visibility in search and AI answers through content and PR, built on the foundation.</div>\n<div class=\"sub\">What to track, and where</div>\n<ul class=\"b\"><li>Visits and leads from AI assistants (ChatGPT, Perplexity, Gemini, Copilot, Claude) as their own channel</li><li>Non-brand search clicks and impressions (today the top 10 queries are all brand names)</li><li>AI Visibility, Mentions and Cited Pages each month</li></ul>\n<div class=\"wh\"><span>GA4</span><span>HubSpot</span><span>Search Console</span><span>SEMrush</span></div>", "cro": "<div class=\"lab\">Then \u00b7 path 2</div><div class=\"ph\">CRO</div>\n<div class=\"ps\">Turn more of the right visitors into leads, starting with the homepage and paid landing pages.</div>\n<div class=\"sub\">What to track, and where</div>\n<ul class=\"b\"><li>Bounce for prospects only, with customers logging in split out</li><li>Clicks on Get started, Book a demo and Sign in; form starts and submits; meetings booked</li><li>Paid landing pages: today 86% bounce, goal about 70\u201375%</li></ul>\n<div class=\"wh\"><span>GA4</span><span>HubSpot</span><span>Google Ads</span></div>"};
+function vshow(n){const p=document.getElementById('vpanel');p.innerHTML=VIS[n];document.querySelectorAll('.vn').forEach(x=>x.classList.toggle('sel',x.dataset.n===n));
+ const bb=document.getElementById('vbb');if(bb){requestAnimationFrame(()=>requestAnimationFrame(()=>bb.querySelectorAll('.fl').forEach(f=>f.style.width=f.style.getPropertyValue('--w'))));}}
+document.querySelectorAll('.vn').forEach(x=>x.addEventListener('click',()=>vshow(x.dataset.n)));
+vshow('track');
+window.addEventListener('beforeprint',()=>{const bb=document.getElementById('vbb');if(bb)bb.querySelectorAll('.fl').forEach(f=>f.style.width=f.style.getPropertyValue('--w'));});
 </script></body></html>
