@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vestwell Website Strategy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#004DFF; --blue2:#3370FF; --soft:#E5EDFF; --soft2:#F2F6FF;
+  --ink:#1B1E26; --grey:#686C78; --muted:#9298A6; --line:#E3E6EE; --bg:#F6F8FC;
+  --red:#C8281C; --red-bg:#FDECEA; --amber:#A3530A; --amber-bg:#FEF3E2; --amber-line:#D98200;
+  --green:#0B7A43; --green-bg:#E6F5EC; --gap:#7A8194; --gap-bg:#F3F4F7;
+  --r:14px; --shadow:0 1px 2px rgba(27,30,38,.05),0 4px 14px rgba(27,30,38,.05);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-align:left}
+button:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:8px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.note{font-size:13px;color:var(--grey)}
+
+/* header */
+.hero{padding:30px 0 6px}
+.toprow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.mark{width:30px;height:30px;border-radius:9px;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:700}
+.pill{font-size:12px;font-weight:600;color:#0036B3;background:var(--soft);border-radius:99px;padding:4px 10px}
+.pill.g{background:var(--gap-bg);color:var(--grey)}
+h1{font-size:32px;line-height:1.15;letter-spacing:-.6px;margin-bottom:8px}
+.sub{font-size:16px;color:var(--grey);max-width:760px}
+.sub b{color:var(--ink)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--grey);margin:16px 0 0}
+.legend span{display:flex;align-items:center;gap:6px}
+.sw{width:13px;height:13px;border-radius:4px;border:2px solid}
+.sw.red{background:var(--red-bg);border-color:var(--red)} .sw.amber{background:var(--amber-bg);border-color:var(--amber-line)}
+.sw.green{background:var(--green-bg);border-color:var(--green)} .sw.gap{background:var(--gap-bg);border-color:var(--gap);border-style:dashed}
+
+/* sections */
+section{padding:34px 0 6px}
+.sh{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+.num{width:30px;height:30px;border-radius:9px;background:var(--blue);color:#fff;font-weight:700;display:grid;place-items:center;flex:none;transform:translateY(5px)}
+h2{font-size:23px;letter-spacing:-.3px;line-height:1.25}
+.intro{font-size:14.5px;color:var(--grey);margin:0 0 16px 42px;max-width:760px}
+.hint{font-size:12.5px;color:var(--blue);font-weight:600}
+
+/* badges */
+.bd{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:600;border-radius:99px;padding:2px 8px;white-space:nowrap}
+.bd.red{background:var(--red-bg);color:var(--red)} .bd.amber{background:var(--amber-bg);color:var(--amber)}
+.bd.green{background:var(--green-bg);color:var(--green)} .bd.gap{background:var(--gap-bg);color:#4B5163;border:1px dashed var(--gap)}
+.bd.new{background:var(--blue);color:#fff} .bd.blue{background:var(--soft);color:#0036B3}
+.src{display:inline-block;font-size:11.5px;font-weight:600;color:#3D4250;background:var(--gap-bg);border-radius:6px;padding:1px 7px;margin:2px 3px 0 0}
+.av{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:10.5px;font-weight:700;background:var(--soft);color:#0036B3;flex:none}
+
+/* 1 personas */
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.pc{padding:16px;display:flex;flex-direction:column;gap:8px;transition:border-color .15s,box-shadow .15s}
+.pc:hover{border-color:var(--blue2)}
+.pc.sel{border-color:var(--blue);box-shadow:0 0 0 3px var(--soft),var(--shadow)}
+.pc .hd{display:flex;align-items:center;gap:10px}
+.pc .hd .av{width:38px;height:38px;font-size:13px}
+.pc .nm{font-weight:700;font-size:15.5px;line-height:1.2}
+.pc .does{font-size:12.5px;color:var(--grey)}
+.pc .who{font-size:13.5px;color:var(--grey)}
+.pc .k{font-size:13px;border-top:1px solid var(--line);padding-top:8px}
+.pc .k b{font-size:15px}
+.pc .hint{margin-top:auto}
+.pdet{display:none;margin-top:12px;padding:18px}
+.pdet.on{display:block;animation:fade .2s ease}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.pdh{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.cols4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.box{border-radius:11px;padding:12px;background:var(--soft2);font-size:13.5px}
+.box h4{font-size:11.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--grey);margin-bottom:6px}
+.box ul{list-style:none;display:grid;gap:5px}
+.box li{padding-left:12px;position:relative}
+.box li::before{content:"";position:absolute;left:0;top:.58em;width:5px;height:5px;border-radius:50%;background:var(--blue2)}
+.box.stop{background:var(--red-bg)} .box.stop li::before{background:var(--red)}
+.box.help{background:var(--green-bg)} .box.help li::before{background:var(--green)}
+.pfoot{display:flex;gap:12px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;margin-top:12px;font-size:13px}
+.pfoot .ev{color:var(--grey);max-width:640px}
+.conf{font-size:12.5px;background:var(--amber-bg);color:var(--amber);border-radius:9px;padding:6px 10px}
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;font-weight:600;font-size:13.5px;border-radius:10px;padding:8px 13px}
+.btn:hover{background:#0036B3}
+.partner{font-size:13px;color:var(--grey);margin-top:10px}
+
+/* 2 funnel */
+.fgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.fc{padding:14px 14px 12px;transition:opacity .2s}
+.fc .fh{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px;margin-bottom:10px}
+.fs{display:grid;gap:5px}
+.fr .lb{display:flex;justify-content:space-between;gap:8px;font-size:12.5px;color:var(--grey)}
+.fr .lb b{color:var(--ink);font-size:13px}
+.fr .bar{height:18px;display:flex;justify-content:center;margin-top:2px}
+.fr .bar i{display:block;height:100%;background:var(--blue);border-radius:4px;min-width:6px}
+.fr.gap .bar i{background:repeating-linear-gradient(135deg,#fff 0 5px,var(--gap-bg) 5px 10px);border:1.5px dashed var(--gap);width:100%!important}
+.fr.amb .bar i{background:repeating-linear-gradient(135deg,#fff 0 5px,var(--amber-bg) 5px 10px);border:1.5px dashed var(--amber-line);width:100%!important}
+.fres{margin-top:10px;padding-top:8px;border-top:1px solid var(--line);font-size:13px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+
+/* 3 journey: one clean path with exits */
+.jtabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.jt{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;border-radius:99px;padding:5px 15px 5px 5px;font-size:13.5px;font-weight:600;color:var(--grey);transition:border-color .15s,background .15s}
+.jt:hover{border-color:var(--blue2);color:var(--ink)}
+.jt[aria-selected=true]{background:var(--blue);border-color:var(--blue);color:#fff}
+.jt[aria-selected=true] .av{background:#fff}
+.jm{padding:26px 28px 22px}
+.jhead{display:flex;align-items:center;gap:12px}
+.jhead .av{width:42px;height:42px;font-size:14px}
+.jhead b{font-size:18px;display:block;line-height:1.2}
+.jhead span span{font-size:13px;color:var(--grey)}
+.jent{font-size:13px;color:var(--grey);margin:8px 0 18px 54px}
+.jflow{max-width:900px}
+.jlab,.jrow{display:grid;grid-template-columns:minmax(0,1fr) 64px minmax(0,1fr);align-items:center}
+.jlab{font-size:11.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.jlab span:last-child{padding-left:4px}
+.jspine{position:relative;align-self:stretch;display:grid;place-items:center}
+.jspine::before{content:"";position:absolute;left:50%;top:-1px;bottom:-1px;width:3px;margin-left:-1.5px;background:var(--blue2)}
+.jlab+.jrow .jspine::before{top:50%}
+.jrow.goal .jspine::before{bottom:50%}
+.jrow.dash .jspine::before{background:repeating-linear-gradient(to bottom,var(--gap) 0 6px,transparent 6px 12px)}
+.jn{position:relative;z-index:1;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;color:#fff;background:var(--blue);box-shadow:0 0 0 5px #fff}
+.jn.red{background:var(--red)} .jn.amber{background:var(--amber-line)} .jn.green{background:var(--green)}
+.jn.gap{background:#fff;color:var(--gap);border:2px dashed var(--gap)}
+.jn.goal{width:34px;height:34px;font-size:15px;background:var(--blue)}
+.jstep{display:flex;flex-direction:column;gap:2px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 15px;margin:8px 0;text-align:left;width:100%;transition:border-color .15s,box-shadow .15s}
+button.jstep:hover{border-color:var(--blue2);box-shadow:var(--shadow)}
+.jstep .sn{font-weight:600;font-size:14.5px;line-height:1.25}
+.jstep .sc{font-weight:700;font-size:19px;letter-spacing:-.3px;line-height:1.2}
+.jstep .ss{font-size:12.5px;color:var(--grey)}
+.jrow.goal .jstep{background:var(--soft2);border-color:var(--blue2)}
+.jrow.goal .sn{color:#0036B3}
+.jexit{display:flex;align-items:center;gap:12px;padding:8px 0}
+.jarw{flex:none;width:34px;height:2px;background:currentColor;position:relative}
+.jarw::after{content:"";position:absolute;right:-1px;top:-4px;width:8px;height:8px;border-top:2px solid currentColor;border-right:2px solid currentColor;transform:rotate(45deg)}
+.jexit.gap .jarw{background:repeating-linear-gradient(to right,currentColor 0 4px,transparent 4px 8px)}
+.jexit .el{font-weight:700;font-size:15px;line-height:1.2}
+.jexit .ew{display:block;font-size:12.5px;color:var(--grey);font-weight:400;margin-top:2px;line-height:1.35}
+.jexit.red{color:var(--red)} .jexit.amber{color:var(--amber)} .jexit.green{color:var(--green)} .jexit.gap{color:#4B5163}
+.jres{font-weight:700;font-size:14.5px;color:#0036B3}
+.dim{opacity:.22}
+.risk{margin-top:10px;background:var(--red-bg);border-radius:10px;padding:10px 12px;font-size:13px}
+.risk b{color:var(--red)}
+
+/* 4 metrics today */
+.mt{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:start}
+.mcol{padding:14px}
+.mcol h3{font-size:15px;display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.mcol h3 .c{font-size:12px;color:var(--grey);font-weight:600}
+.mrow{display:grid;grid-template-columns:1fr auto;gap:2px 10px;width:100%;padding:8px;border-radius:9px;border-top:1px solid var(--line)}
+.mrow:hover{background:var(--soft2)}
+.mrow .mn{font-size:13.5px;font-weight:600;line-height:1.3}
+.mrow .mv{font-size:13px;font-weight:700;text-align:right;white-space:nowrap}
+.mrow .ms{grid-column:1/-1;font-size:12.5px;color:var(--grey);line-height:1.35}
+.unused{margin-top:12px;padding:12px 14px;font-size:13px;border-style:dashed;box-shadow:none;background:#FBFCFE}
+.unused button{display:inline-block;font-weight:600;color:#3D4250;background:var(--gap-bg);border-radius:6px;padding:1px 7px;margin:2px;font-size:12.5px}
+.unused button:hover{background:var(--soft)}
+
+/* 5 add */
+.ad{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.ac{padding:13px;font-size:13px;display:flex;flex-direction:column;gap:6px}
+.ac .ah{display:flex;justify-content:space-between;gap:6px;align-items:flex-start}
+.ac .ah b{font-size:14px;line-height:1.25}
+.ac p span{font-weight:600}
+.ac .bn{background:var(--green-bg);border-radius:8px;padding:6px 8px;margin-top:auto}
+
+/* 6 teams */
+.tg{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.tc{padding:13px;display:flex;flex-direction:column;gap:8px}
+.tc .tn{font-weight:700;font-size:14.5px}
+.tc .tq{font-size:13px;color:var(--grey);line-height:1.35}
+.tc ul{list-style:none;display:grid;gap:7px;border-top:1px solid var(--line);padding-top:8px}
+.tc li{font-size:13px;line-height:1.3}
+.tc li .row{display:flex;justify-content:space-between;gap:6px;align-items:flex-start;font-weight:600}
+.tc .dec{font-size:12.5px;background:var(--soft2);border-radius:8px;padding:6px 8px;margin-top:auto}
+.tc .dec b{color:#0036B3}
+.fix{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:4px}
+.fix .f{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:7px 11px;font-size:13.5px;font-weight:600}
+.fix .f i{font-style:normal;width:22px;height:22px;border-radius:7px;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:12px}
+.fix .to{color:var(--muted)}
+footer{font-size:12.5px;color:var(--grey);padding:24px 0 40px;margin-top:30px;border-top:1px solid var(--line)}
+footer .srcs{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:6px}
+footer .srcs b,footer>div>b{color:var(--ink)}
+
+/* drawer */
+.scrim{position:fixed;inset:0;background:rgba(27,30,38,.25);opacity:0;pointer-events:none;transition:opacity .2s;z-index:40}
+.scrim.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(420px,100%);background:#fff;z-index:50;transform:translateX(102%);transition:transform .25s ease;box-shadow:-8px 0 30px rgba(27,30,38,.12);display:flex;flex-direction:column}
+.drawer.on{transform:none}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-bottom:1px solid var(--line)}
+.dh .x{width:34px;height:34px;border-radius:9px;font-size:20px;color:var(--grey);text-align:center}
+.dh .x:hover{background:var(--gap-bg)}
+.db{padding:8px 18px 24px;overflow-y:auto}
+.dt{font-size:18px;font-weight:700;margin:6px 0 4px;line-height:1.25}
+.dn{font-size:22px;font-weight:700;margin-bottom:4px}
+.dsec{margin-top:14px}
+.dsec h5{font-size:11.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--grey);margin-bottom:5px}
+.dsec p{font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip{font-size:12px;border:1px solid var(--line);border-radius:7px;padding:2px 8px;color:#3D4250}
+.todo{background:var(--green-bg);border-radius:10px;padding:10px 12px;font-size:14px}
+.todo b{color:var(--green)}
+
+@media (max-width:1000px){
+  .pgrid,.fgrid,.cols4,.ad{grid-template-columns:repeat(2,1fr)}
+  .mt{grid-template-columns:1fr}
+  .tg{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:720px){
+  .wrap{padding:0 16px}
+  h1{font-size:25px} h2{font-size:20px}
+  .intro{margin-left:0}
+  .pgrid,.fgrid,.cols4,.ad,.tg{grid-template-columns:1fr}
+  .jm{padding:18px 14px}
+  .jent{margin-left:0}
+  .jlab{display:none}
+  .jrow{grid-template-columns:44px minmax(0,1fr);grid-template-areas:"s c" "s e"}
+  .jrow .jspine{grid-area:s} .jrow .jstep{grid-area:c;margin-bottom:2px} .jrow .jexit{grid-area:e;padding:0 0 10px}
+  .jrow .jspine{order:-1}
+  .jarw{width:18px}
+  .drawer{top:auto;bottom:0;height:80%;width:100%;border-radius:18px 18px 0 0;transform:translateY(102%)}
+  .drawer.on{transform:none}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media print{.drawer,.scrim,.hint{display:none!important} body{background:#fff} .card{box-shadow:none} section{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="toprow"><div class="mark" aria-hidden="true">V</div><span class="pill">Draft for brand approval · 27 Oct 2026</span><span class="pill g">Troopod × Vestwell</span></div>
+  <h1>Vestwell website: who visits, where they drop off, and what we measure</h1>
+  <p class="sub">Numbers are from GA4 and HubSpot (last 28–30 days, to 25 Oct 2026), each checked three times. <b>Skim the boxes; click anything for the detail.</b></p>
+  <div class="legend">
+    <span><i class="sw red"></i>Red = people are lost here</span>
+    <span><i class="sw amber"></i>Amber = friction</span>
+    <span><i class="sw green"></i>Green = working</span>
+    <span><i class="sw gap"></i>Grey dashed = tools can't see it (not a real loss)</span>
+  </div>
+</header>
+
+<section id="personas">
+  <div class="sh"><span class="num">1</span><h2>Who visits: 4 personas</h2></div>
+  <p class="intro">The sign-up app already asks "What are you interested in?" with these four answers. Today every number mixes all four. <span class="hint">Click a persona to know more.</span></p>
+  <div class="pgrid" id="pgrid"></div>
+  <div class="card pdet" id="pdet" aria-live="polite"></div>
+  <p class="partner">Not on this map: partners and institutions (payroll providers, banks, state programs). They are mostly sales-led, with little website data.</p>
+</section>
+
+<section id="funnel">
+  <div class="sh"><span class="num">2</span><h2>The funnel: how many make it through</h2></div>
+  <p class="intro">A funnel is the path from "arrived" to "became a customer". It narrows at every step. Bars are to scale within each persona.</p>
+  <div class="fgrid" id="fgrid"></div>
+</section>
+
+<section id="journey">
+  <div class="sh"><span class="num">3</span><h2>The journey: each step, where people drop off, and why</h2></div>
+  <p class="intro">Pick a persona. Down the middle is their path; on the right, how many leave at each step and why. <span class="hint">Click a step for the fix.</span></p>
+  <div class="jtabs" id="jtabs" role="tablist" aria-label="Persona"></div>
+  <div class="card jm" id="jm"></div>
+</section>
+
+<section id="metrics">
+  <div class="sh"><span class="num">4</span><h2>Metrics today: what's right, what's wrong, what's missing</h2></div>
+  <p class="intro">Every metric Vestwell's team uses today. <span class="hint">Click a metric for why, and what to do.</span></p>
+  <div class="mt" id="mt"></div>
+  <div class="card unused" id="unused"></div>
+</section>
+
+<section id="add">
+  <div class="sh"><span class="num">5</span><h2>Metrics to add, and the benefit</h2></div>
+  <p class="intro">These go on the new dashboard. Must have = needed first.</p>
+  <div class="ad" id="ad"></div>
+</section>
+
+<section id="teams">
+  <div class="sh"><span class="num">6</span><h2>Which team uses which metric</h2></div>
+  <p class="intro">One dashboard joins every tool; each team sees the view that answers its question. <b>NEW</b> = not tracked today.</p>
+  <div class="tg" id="tg"></div>
+  <h3 style="font-size:15px;margin:22px 0 6px">Fix order, biggest impact first</h3>
+  <div class="fix" id="fix"></div>
+</section>
+
+<footer>
+  <div><b>Where each number comes from:</b></div>
+  <div class="srcs" id="srcs"></div>
+  <p style="margin-top:10px">Sources: GA4 (28 Sep–25 Oct 2026; 90-day figures 28 Jul–25 Oct), HubSpot dashboards (last 30 days, read 26 Oct), Search Console (3 months to 13 Oct), the live site (21 and 26 Oct). Read-only: nothing was changed. Evidence: GA Audit/Evidence/validation_2026-10-26. Persona roles and company sizes are our assumption, marked "to confirm".</p>
+</footer>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Details" inert>
+  <div class="dh"><span class="note" id="dkick">Details</span><button class="x" id="dclose" aria-label="Close">×</button></div>
+  <div class="db" id="dbody"></div>
+</aside>
+
+<script>
+(function(){
+"use strict";
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+
+/* ---------- DATA (same numbers as the audit summary) ---------- */
+const P={
+ owner:{name:"Small business owner",init:"SB",does:"Starts a plan on their own",
+  who:"Owner or office manager at a small business, often setting up a first plan. Includes the self-employed (Solo 401(k)).",
+  key:["8,746","start the sign-up app; 24–32 finish"],
+  wants:["See the price before giving details","Know it works with their payroll app","Set up a plan without a sales call"],
+  from:["Ad pages: QuickBooks (3,391 views), J.P. Morgan Solo 401(k) (2,379)","Homepage (69% of visits land there)","Google search"],
+  stops:["Offer pop-up covers the homepage","No pricing page: /pricing is a 404","Phone and details asked before any price","7 screens before seeing value"],
+  helps:["Price shown up front","Contact details asked last","A clear Start a plan path"],
+  ev:"Sign-up app answer: Plan for my business · 8,746 reached question 1 in 28 days · top paid pages are employer and payroll pages",
+  conf:"Job titles and company size are our assumption."},
+ hr:{name:"HR or finance lead",init:"HR",does:"Books a demo with sales",
+  who:"Runs benefits or finance at a growing company. Often switching providers, and wants to talk to a person first.",
+  key:["1,024","on book-a-call; 0 meetings tracked"],
+  wants:["Talk to an expert first","A smooth switch from their current provider","Clear fees"],
+  from:["Book-a-call page (best page: 18.3% send the form)","Accrue 401k transition page (1,110 views)","Email and direct"],
+  stops:["7 required fields, incl. phone and ZIP","A calendar step after the form","Meetings sit in Salesforce, no report reads them"],
+  helps:["Demo form cut from 7 to 4 fields","Pick a time straight after the form","Meetings booked and held, tracked"],
+  ev:"Sign-up app answer: Just a demo · 1,024 people, 157 forms (GA4 and HubSpot agree within ~5%)",
+  conf:"Role and company size are our assumption."},
+ advisor:{name:"Financial advisor or TPA",init:"FA",does:"Sets up plans for clients",
+  who:"Advises or administers retirement plans for businesses. One advisor can bring many plans.",
+  key:["≈4 in 10","of self-serve sign-ups are advisors (90 days)"],
+  wants:["Set up and manage client plans","Fiduciary and investment support","A clear next step after the tour"],
+  from:["Advisor demo page (product tour)","Sign-up app: Plan for my client's business","Advisor articles"],
+  stops:["Advisor demo page has no tracked next step","Sign-up: 94 start, 22 finish"],
+  helps:["One next step on the demo page","Advisor sign-ups counted as a result"],
+  ev:"Sign-up app answer: Plan for my client's business · 90 days: 54 advisor vs 68 employer sign-ups finished",
+  conf:"The split between advisors and TPAs is unknown."},
+ saver:{name:"Saver with an account",init:"SA",does:"Comes to log in",
+  who:"Already saves through a plan run on Vestwell. Here to log in, not to buy.",
+  key:["51,688","Google clicks on vestwell login (3 months)"],
+  wants:["Find Sign in fast"],
+  from:["Google: vestwell login","Homepage","Bookmarks"],
+  stops:["On phones, Sign in is hidden in the menu","The pop-up can get in the way"],
+  helps:["Sign in visible on phones","Customers split out of marketing numbers"],
+  ev:"Sign-up app answer: Access my personal account · login site has only Heap · their visit counts as left the site",
+  conf:"Not a buyer, but they change every traffic number."}
+};
+const ORDER=["owner","hr","advisor","saver"];
+
+const FUN={
+ owner:{rows:[["Started sign-up",8746],["Contact details",497],["Plan recommendation",84],["Finished",32,"24–32"]],res:["red","0.37%"],rest:"of starters finish"},
+ hr:{rows:[["Book-a-call page",1024],["Sent the form",157],["Meeting booked",null]],res:["amber","15%"],rest:"send the form; meetings not tracked"},
+ advisor:{rows:[["Started advisor sign-up",94],["Advisor details",71],["Finished",22]],res:["green","1 in 4"],rest:"finish, the best path on the site"},
+ saver:{rows:[["Searched vestwell login",51688],["Find Sign in",null,"amber"],["Login site",null]],res:["gap","Not a loss"],rest:"but counted as left the site"}
+};
+
+const N={
+ home:["Lands on the homepage","149,299 visits (69%)","red","Only 0.07% fill a form",["offer pop-up covers page","headline","3 options"],"Pop-up hides the page on first visit; the headline doesn't say what Vestwell sells.","Remove the arrival pop-up; a headline that says what Vestwell sells, and for whom."],
+ ad:["Lands on an ad page","≈8,150 views","gap","0–0.13% in HubSpot",["QuickBooks","J.P. Morgan","thiseasy"],"The button goes to the sign-up app, which HubSpot can't see.","Count hand-offs and sign-ups on the ad page that sent them."],
+ price:["Looks for pricing","404 page not found","red","Dead end",["Pricing menu","/pricing"],"The pricing page people look for doesn't exist.","Bring back a pricing page."],
+ a1:["Q1: What are you interested in?","8,746 people","red","≈94% go no further",["my business","client's business","my account","just a demo"],"Sign-up starts before any explanation. People wanting a demo or their account also land here.","Ask who they are on the website first; send demo and account answers to the right page."],
+ a2:["Set up your plan","497 people","red","≈55% leave",["name","email","phone","company","employees"],"Asks for phone and details before showing any price. 497 reach it; about 225 reach a next screen.","Show the recommended plan and price first; ask for contact details last."],
+ a3:["Plan questions","165 → 84","red","≈50% leave",["confirmation","contributions","recommendation"],"Many questions before seeing value.","Fewer questions before the plan recommendation."],
+ a4:["Signer and company","52–68 people","amber","Friction",["authorised signer?","company details"],"Stops if you're not the signer.","Let the person invite the signer and keep going."],
+ a5:["Finished","24–32 (0.37%)","gap","Not tracked as a win",[],"No tool counts a finished sign-up as a conversion.","Make sign-up finished a key event in GA4 and HubSpot."],
+ b1:["Book-a-call page","1,024 people","green","Good intent",["We'd love to connect","form on first screen"],"People here want to talk. It is the best page on the site (18.3% send the form).","Keep it; send more of the right traffic here."],
+ b2:["Fill the form","157 submit","red","≈85% leave",["7 required fields","incl. phone + ZIP"],"Too many fields for a first contact.","Cut the demo form from 7 to 4 fields."],
+ b3:["Pick a time (LeanData)","0 meetings in reports","gap","Not tracked",["calendar pop-up"],"Bookings are saved in Salesforce; no report reads them.","Track LeanData bookings; read the Salesforce meeting log."],
+ c1:["Advisor demo page","156 people","amber","0 next steps",["product tour"],"No clear next action is tracked, so the page's value can't be shown.","Add one next step: book an advisor call or start advisor sign-up."],
+ c2:["Advisor sign-up","94 → 22","amber","1 in 4 finish",["role","details"],"About 1 in 4 who start finish: much better than the employer path.","Keep it; count advisor sign-up finished as a result."],
+ d1:["Google: vestwell login","51,688 clicks / 3 mo","green","Clear intent",[],"Customers search for the login page.","Nothing to fix here; just route them fast."],
+ d2:["Find Sign in","≈6s on homepage","amber","Extra taps",["phone: hidden in menu"],"The pop-up can get in the way.","Show Sign in on phones; skip the pop-up for returning visitors."],
+ d3:["Leaves to login site","Counted as left","gap","Not a real loss",[],"Makes traffic numbers look worse.","Track Sign in clicks; report customers separately from prospects."]
+};
+const LANES={owner:["a1","a2","a3","a4","a5"],hr:["b1","b2","b3"],advisor:["c1","c2"],saver:["d1","d2","d3"]};
+
+/* id, name, tool, status, value, one-line reason, why, what to do */
+const M=[
+ ["visits","Visits","GA4","ok","217,264","","Counts every visit on www, save.with and the sign-up app.","Use GA4 for traffic. HubSpot shows about half, so don't mix the two."],
+ ["channels","Visits by channel","GA4","ok","Direct 56% · Organic 28%","","Standard GA4 grouping. Also Paid 5%, Email 3%.","Fine. Buyers and customers are mixed until visits are split."],
+ ["landing","Landing pages, time on page","GA4","ok","per page","","GA4 sees the whole visit.","Use GA4, not HubSpot, for time on page."],
+ ["devices","Devices and countries","GA4","ok","Desktop 55% · Mobile 44%","","Same split in GA4 and HubSpot.","Check every fix on phones too."],
+ ["bookcall","Book-a-call visits and forms","GA4 + HubSpot","ok","1,024 · 157 forms","","GA4 and HubSpot agree within ~5%.","The one lead number you can trust today."],
+ ["contacts","Contacts created, email results","HubSpot","ok","per month","","Standard HubSpot reports.","Fine as is."],
+ ["revenue","Closed-won revenue from website","HubSpot","ok","$100K–$204K / mo","","New deals from website leads; excludes partner and advisor pipeline.","Reliable. Sep was the best month ($204,293)."],
+ ["engaged","Engaged visits","GA4","mis","36.6%","Mixes in customers going to log in","Customers heading to the login site are counted with buyers.","Read it for prospects only, once customers are split out."],
+ ["conv","Conversions","GA4","mis","759","Only HubSpot form sent works, and it includes customer forms","Sign-ups and meetings are not counted at all.","Add sign-up finished and meeting booked as key events."],
+ ["screens","Sign-up app screens","GA4","mis","8,746 → 32","Seen as page views, not conversions","Each screen is a page view; finishing is not a conversion.","Add an event for each step and for finished."],
+ ["booth","Event booth page","GA4","mis","99 events, 7 people","A booth device logged many forms","99 key events from 7 people in 90 days.","Exclude it from lead counts."],
+ ["bounce","Bounce rate","HubSpot","mis","82.27%","Too high: HubSpot only sees the first page","In a test, GA4 logged 3 pages and HubSpot 1.","Use GA4: 37% of visits engage."],
+ ["pages","Pages per visit · visit length","HubSpot","mis","1.25 · 43s","Same reason","HubSpot only sees the first page.","Use GA4 engagement instead."],
+ ["hsvisits","HubSpot visits","HubSpot","mis","about half of GA4","Script likely loads late","HubSpot's script likely loads late, through GTM and consent. Not proven.","Use GA4 for traffic."],
+ ["forms","Form submissions","HubSpot","mis","2,410 (Sept)","Includes customer forms (GA4 says 857)","Customer and support forms are counted with leads.","Report real marketing leads instead."],
+ ["lpform","Landing page form rate","HubSpot","mis","0–18.3%","Blind to the sign-up app","Ad pages look like 0% when people go to sign up.","Don't cut ad pages on this number; count sign-ups per page."],
+ ["demoreq","Self-service demo requests","HubSpot","mis","≈2.3K / mo","Definition unclear; mostly no source","About 3x anything GA4 sees. Not explained yet.","Agree the definition before reporting it."],
+ ["firsttouch","Revenue by first touch","HubSpot","mis","$3.6M / yr","Biggest bucket is HubSpot CRM","HubSpot CRM ($1.15M) says nothing about marketing.","Use for trend only, not channel credit."],
+ ["consent","Consent in the sign-up app","GA4 + Ads","risk","non-US visitors","Sends data before the cookie answer","For visitors outside the US, the sign-up app sends data to Google's ads before they answer the cookie banner. The main site does this correctly.","Fix in the sign-up app. Legal risk."],
+ ["realleads","Real marketing leads","HubSpot","none","not separated","","Customer forms are counted as leads (HubSpot 2,410 vs GA4 857).","Add it: one true lead number."],
+ ["meetings","Demo meetings booked and held","LeanData + Salesforce","none","0 tracked","","Two GTM tags for leads and meetings exist but fired 0 times in 28 days.","Add it: the most valuable action."],
+ ["signupwin","Sign-ups finished","GA4","none","not a conversion","","No tool counts a finished sign-up as a win.","Add it: count every new plan."],
+ ["split","Prospects vs customers","GA4 + HubSpot","none","no split","","69% of visits start on the homepage, many of them customers going to log in.","Add it: honest traffic and bounce numbers."],
+ ["cpl","Cost per lead / per meeting","Ads + HubSpot","none","not linked","","Ad spend isn't linked to leads or meetings.","Add it: move ad money to what works."],
+ ["heap","Heap","Login site","unused","","","Only tool on the login site: how customers use their account. Used in no report.","Use it for customer logins."],
+ ["leandata","LeanData","Demo bookings","unused","","","The calendar where demo meetings get booked. Used in no report.","Read it into the dashboard."],
+ ["sfmeet","Salesforce meeting log","Meetings","unused","","","Where LeanData saves each meeting. Not seen by us yet; strong clues it exists.","Confirm access, then read it."],
+ ["adspend","Ad platforms","Spend and clicks","unused","","","Google Ads, Meta, LinkedIn, Reddit. Not joined to leads.","Join to leads to get cost per lead."],
+ ["sc","Search Console","www only","unused","","","Covers www.vestwell.com only, not save.with.vestwell.com.","Add save.with so campaign pages are covered."]
+].map(a=>({id:a[0],name:a[1],tool:a[2],v:a[3],val:a[4],short:a[5],why:a[6],todo:a[7]}));
+const MI=Object.fromEntries(M.map(m=>[m.id,m]));
+const VS={ok:["✓","Right","green"],mis:["!","Wrong or misleading","amber"],risk:["⚠","Risk","red"],none:["✕","Missing","red"],unused:["○","Collected, unused","gap"]};
+
+const ADD=[
+ ["Real marketing leads","Must have","Today customer forms are counted as leads (HubSpot 2,410 vs GA4 857).","One true lead number everyone agrees on."],
+ ["Demo meetings booked and held","Must have","The most valuable action. Today: 0 tracked.","See which channels and pages create meetings, not just forms."],
+ ["Sign-up steps and completions","Must have","94% stop at question 1 and nobody is alerted.","Find and fix the biggest leak; count every new plan."],
+ ["Prospects vs customers","Must have","69% of visits start on the homepage, many of them customers going to log in.","Honest traffic and bounce numbers for marketing."],
+ ["Cost per lead / per meeting","Must have","Ad spend isn't linked to leads or meetings.","Move ad money to what actually works."],
+ ["Lead → meeting → deal → won","Should have","Steps live in 3 tools and are never joined.","See where deals stall after marketing hands them over."],
+ ["True landing page conversion","Should have","Ad pages look like 0% when people go to sign up.","Judge ad pages fairly; stop cutting pages that work."],
+ ["Tracking health and consent","Should have","Broken tracking and the consent gap went unnoticed.","An alert the day something breaks; less legal risk."]
+];
+
+const TEAMS=[
+ ["Leadership","Is marketing bringing in business?",[["Revenue won from the website",0,"HubSpot"],["Real leads",1,"HubSpot"],["Demo meetings",1,"LeanData · Salesforce"],["Cost per lead",1,"Ads · HubSpot"]],"Where to put next quarter's budget"],
+ ["Performance marketing","Which ads and channels work?",[["Visits by channel (buyers only)",1,"GA4"],["Leads by channel",1,"HubSpot"],["Cost per lead / per meeting",1,"Ads · HubSpot · Salesforce"],["Landing page results",0,"GA4 · HubSpot"]],"Move ad money to what creates meetings"],
+ ["Content & creative","Which pages and screens lose people?",[["Landing page results",0,"GA4 · HubSpot"],["Engaged visits",0,"GA4"],["Desktop vs phone",0,"GA4"],["Where people drop off",1,"GA4"]],"Which page or screen to fix next"],
+ ["Sales","Which leads turn into meetings and deals?",[["Demo meetings booked and held",1,"LeanData · Salesforce"],["Lead → meeting → deal",1,"HubSpot · Salesforce"],["Real leads",1,"HubSpot"]],"Which channels bring leads that close"],
+ ["Product (sign-up app)","Where does sign-up break?",[["Sign-up steps and completions",1,"GA4 · GTM"],["Customer logins",0,"Heap"],["Tracking health",1,"GTM · GA4"]],"Which sign-up screen to fix first"]
+];
+const FIX=["Track what matters","Split customers out","Fix the first screen","Shorten the forms","Fix consent"];
+const SRCS=[["GA4","visits, pages, sign-up steps"],["HubSpot","forms, contacts, deals, revenue"],["LeanData","demo bookings"],["Salesforce","meeting log"],["Heap","login site"],["Ad platforms","spend and clicks"],["GTM","not a source: the pipe for tracking codes"]];
+
+/* ---------- HELPERS ---------- */
+const fmt=n=>n.toLocaleString("en-US");
+const av=p=>`<span class="av">${P[p].init}</span>`;
+const bd=(c,t)=>`<span class="bd ${c}">${t}</span>`;
+let shown=null;
+
+/* ---------- DRAWER ---------- */
+const drawer=$("#drawer"), scrim=$("#scrim"); let back=null;
+function openD(kick,html){back=document.activeElement;$("#dkick").textContent=kick;$("#dbody").innerHTML=html;drawer.inert=false;drawer.classList.add("on");scrim.classList.add("on");$("#dclose").focus();}
+function closeD(){drawer.classList.remove("on");scrim.classList.remove("on");drawer.inert=true;if(back&&back.focus)back.focus();}
+$("#dclose").onclick=closeD; scrim.onclick=closeD;
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&drawer.classList.contains("on"))closeD();});
+
+/* ---------- 1 PERSONAS ---------- */
+function renderP(){
+ $("#pgrid").innerHTML=ORDER.map(p=>{const x=P[p];return `<button class="card pc ${shown===p?"sel":""}" data-p="${p}" aria-expanded="${shown===p}">
+  <span class="hd">${av(p)}<span><span class="nm">${x.name}</span><br><span class="does">${x.does}</span></span></span>
+  <span class="who">${x.who}</span>
+  <span class="k"><b>${x.key[0]}</b> ${x.key[1]}</span>
+  <span class="hint">${shown===p?"Hide details ↑":"Know more ↓"}</span></button>`;}).join("");
+ const d=$("#pdet");
+ if(!shown){d.classList.remove("on");d.innerHTML="";return;}
+ const x=P[shown];
+ d.innerHTML=`<div class="pdh">${av(shown)}<b style="font-size:16px">${x.name}</b><span class="note">· ${x.does}</span><span style="flex:1"></span><button class="btn" data-follow="${shown}">See their journey ↓</button></div>
+  <div class="cols4">
+   <div class="box"><h4>They want</h4><ul>${x.wants.map(i=>`<li>${i}</li>`).join("")}</ul></div>
+   <div class="box"><h4>They arrive from</h4><ul>${x.from.map(i=>`<li>${i}</li>`).join("")}</ul></div>
+   <div class="box stop"><h4>What stops them</h4><ul>${x.stops.map(i=>`<li>${i}</li>`).join("")}</ul></div>
+   <div class="box help"><h4>What would help</h4><ul>${x.helps.map(i=>`<li>${i}</li>`).join("")}</ul></div>
+  </div>
+  <div class="pfoot"><span class="ev"><b>Built from:</b> ${x.ev}</span><span class="conf">To confirm: ${x.conf}</span></div>`;
+ d.classList.add("on");
+}
+
+/* ---------- 2 FUNNEL ---------- */
+function renderF(){
+ $("#fgrid").innerHTML=ORDER.map(p=>{const F=FUN[p], n0=F.rows[0][1];
+  return `<div class="card fc" data-lane="${p}"><div class="fh">${av(p)}${P[p].name}</div><div class="fs">${F.rows.map(r=>{const [l,n,disp]=r;
+   const cls=n==null?(disp==="amber"?"amb":"gap"):"";
+   const w=n==null?100:Math.max(n/n0*100,3);
+   const val=n==null?(disp==="amber"?"friction":"not tracked"):(disp||fmt(n));
+   return `<div class="fr ${cls}" title="${l}: ${val}"><div class="lb"><span>${l}</span><b>${val}</b></div><div class="bar"><i style="width:${w}%"></i></div></div>`;}).join("")}</div>
+   <div class="fres">${bd(F.res[0],F.res[1])}<span>${F.rest}</span></div></div>`;}).join("");
+}
+
+/* ---------- 3 JOURNEY ---------- */
+const HOME=["home","Lands on the homepage","149,299 visits","69% of all visits start here","red","Only 0.07% fill a form","Pop-up covers the page; the headline doesn't say what Vestwell sells."];
+const J={
+ owner:{entry:"Also arrives on ad pages (QuickBooks, J.P. Morgan: ≈8,150 views). Looking for pricing hits a 404.",rows:[HOME,
+  ["a1","Q1: What are you interested in?","8,746 people","First screen of the sign-up app","red","≈94% go no further","Sign-up starts before any explanation."],
+  ["a2","Set up your plan","497 people","Name, email, phone, company","red","≈55% leave","Phone and details asked before any price."],
+  ["a3","Plan questions","165 → 84","Confirmation, contributions, recommendation","red","≈50% leave","Many questions before seeing value."],
+  ["a4","Signer and company","52–68 people","Authorised signer? Company details","amber","Friction","Stops if you're not the signer."],
+  ["a5","Finished","24–32 people","0.37% of those who started","gap","Not tracked as a win","No tool counts a finished sign-up."]],
+  goal:["A new plan, set up on their own","24–32 in 28 days"]},
+ hr:{entry:"Often comes by email or direct. The Accrue 401k transition page had 1,110 views.",rows:[HOME,
+  ["b1","Book-a-call page","1,024 people","Form on the first screen","green","Good intent","The best page on the site: 18.3% send the form."],
+  ["b2","Fill the form","157 submit","7 required fields, incl. phone + ZIP","red","≈85% leave","Too many fields for a first contact."],
+  ["b3","Pick a time (LeanData)","0 in reports","Calendar pop-up after the form","gap","Not tracked","Bookings sit in Salesforce; no report reads them."]],
+  goal:["A sales meeting, then a deal","Unknown today"]},
+ advisor:{entry:"Also starts in the sign-up app by choosing: Plan for my client's business.",rows:[HOME,
+  ["c1","Advisor demo page","156 people","Product tour","amber","0 tracked next steps","No clear next action after the tour."],
+  ["c2","Advisor sign-up","94 → 22","Role, then details","amber","1 in 4 finish","Much better than the employer path."]],
+  goal:["Brings client plans to Vestwell","22 sign-ups in 28 days"]},
+ saver:{entry:"Comes to log in, not to buy.",rows:[
+  ["d1","Searches Google: vestwell login","51,688 clicks","In 3 months","green","Clear intent","They know what they want: their account."],
+  ["d2","Finds Sign in on the homepage","≈6s on the page","On phones, Sign in is inside the menu","amber","Extra taps","The pop-up can get in the way."],
+  ["d3","Leaves to the login site","Counted as left","The login site has no GA4 or HubSpot","gap","Not a real loss","But it makes traffic and bounce look worse."]],
+  goal:["Logs in to their account","Not a buyer: keep out of marketing numbers"]}
+};
+let jp="owner";
+function renderJ(){
+ $("#jtabs").innerHTML=ORDER.map(p=>`<button class="jt" role="tab" aria-selected="${jp===p}" data-jp="${p}">${av(p)}${P[p].name}</button>`).join("");
+ const x=J[jp], rows=x.rows, lastGap=rows[rows.length-1][4]==="gap";
+ $("#jm").innerHTML=`<div class="jhead">${av(jp)}<span><b>${P[jp].name}</b><span>${P[jp].does}</span></span></div>
+ <p class="jent">${x.entry}</p>
+ <div class="jflow">
+  <div class="jlab"><span>What happens</span><span></span><span>Who leaves, and why</span></div>
+  ${rows.map((r,i)=>`<div class="jrow ${r[4]==="gap"?"dash":""}">
+   <button class="jstep" data-n="${r[0]}"><span class="sn">${r[1]}</span><span class="sc">${r[2]}</span><span class="ss">${r[3]}</span></button>
+   <div class="jspine"><span class="jn ${r[4]}">${i+1}</span></div>
+   <div class="jexit ${r[4]}"><span class="jarw" aria-hidden="true"></span><span><span class="el">${r[5]}</span><span class="ew">${r[6]}</span></span></div></div>`).join("")}
+  <div class="jrow goal ${lastGap?"dash":""}">
+   <div class="jstep"><span class="sn">Goal: ${x.goal[0]}</span></div>
+   <div class="jspine"><span class="jn goal">✓</span></div>
+   <div class="jexit"><span class="jres">${x.goal[1]}</span></div></div>
+ </div>
+ <div class="risk"><b>Legal risk:</b> for visitors outside the US, the sign-up app sends data to Google's ads before they answer the cookie banner. The main site does this correctly.</div>`;
+}
+function nodeHTML(id){const n=N[id];
+ return `${bd(n[2],n[3])}<div class="dt">${n[0]}</div><div class="dn">${n[1]}</div>
+ ${n[4].length?`<div class="dsec"><h5>What the visitor sees</h5><div class="chips">${n[4].map(c=>`<span class="chip">${c}</span>`).join("")}</div></div>`:""}
+ <div class="dsec"><h5>Why</h5><p>${n[5]}</p></div>
+ <div class="dsec"><h5>The fix</h5><div class="todo"><b>Fix:</b> ${n[6]}</div></div>`;}
+
+/* ---------- 4 METRICS TODAY ---------- */
+function mrow(m){return `<button class="mrow" data-m="${m.id}"><span class="mn">${VS[m.v][0]} ${m.name}</span><span class="mv">${m.val}</span><span class="ms">${m.short||m.tool}</span></button>`;}
+function renderM(){
+ const col=(title,keys,cls)=>{const ms=M.filter(m=>keys.includes(m.v));return `<div class="card mcol"><h3>${bd(cls,VS[keys[0]][0]+" "+title)}<span class="c">${ms.length}</span></h3>${ms.map(mrow).join("")}</div>`;};
+ $("#mt").innerHTML=col("Right",["ok"],"green")+col("Wrong or misleading",["mis","risk"],"amber")+col("Missing",["none"],"red");
+ $("#unused").innerHTML=`<b>○ Collected, but used in no report:</b> `+M.filter(m=>m.v==="unused").map(m=>`<button data-m="${m.id}">${m.name}</button>`).join("");
+}
+function metricHTML(id){const m=MI[id];
+ return `${bd(VS[m.v][2],VS[m.v][0]+" "+VS[m.v][1])}<div class="dt">${m.name}</div>${m.val?`<div class="dn">${m.val}</div>`:""}
+ <div class="dsec"><h5>Where it lives</h5><span class="src">${m.tool}</span></div>
+ <div class="dsec"><h5>Why</h5><p>${m.why}</p></div>
+ <div class="dsec"><h5>What to do</h5><div class="todo">${m.todo}</div></div>`;}
+
+/* ---------- 5 ADD ---------- */
+$("#ad").innerHTML=ADD.map(a=>`<div class="card ac"><div class="ah"><b>${a[0]}</b>${a[1]==="Must have"?bd("new","Must have"):bd("blue","Should have")}</div><p><span>Why:</span> ${a[2]}</p><p class="bn"><span>Benefit:</span> ${a[3]}</p></div>`).join("");
+
+/* ---------- 6 TEAMS ---------- */
+$("#tg").innerHTML=TEAMS.map(t=>`<div class="card tc"><span class="tn">${t[0]}</span><span class="tq">${t[1]}</span>
+ <ul>${t[2].map(x=>`<li><span class="row"><span>${x[0]}</span>${x[1]?bd("new","NEW"):""}</span><span class="src">${x[2]}</span></li>`).join("")}</ul>
+ <span class="dec"><b>Helps decide:</b> ${t[3]}</span></div>`).join("");
+$("#fix").innerHTML=FIX.map((f,i)=>(i?'<span class="to">→</span>':"")+`<span class="f"><i>${i+1}</i>${f}</span>`).join("");
+$("#srcs").innerHTML=SRCS.map(s=>`<span><b>${s[0]}</b>: ${s[1]}</span>`).join("");
+
+/* ---------- EVENTS ---------- */
+document.addEventListener("click",e=>{
+ const t=e.target.closest("button"); if(!t) return;
+ if(t.dataset.p){shown=shown===t.dataset.p?null:t.dataset.p;renderP();if(shown)setTimeout(()=>$("#pdet").scrollIntoView({behavior:"smooth",block:"nearest"}),50);return;}
+ if(t.dataset.follow){jp=t.dataset.follow;renderJ();$("#journey").scrollIntoView({behavior:"smooth"});return;}
+ if(t.dataset.jp){jp=t.dataset.jp;renderJ();return;}
+ if(t.dataset.n){openD("Journey step",nodeHTML(t.dataset.n));return;}
+ if(t.dataset.m){openD("Metric",metricHTML(t.dataset.m));return;}
+});
+
+renderP();renderF();renderJ();renderM();
+})();
+</script>
+</body>
+</html>
