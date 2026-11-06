@@ -106,6 +106,14 @@
   .price-why{margin-top:14px;padding:16px 18px;border-radius:12px;border:1px solid rgba(232,162,61,0.35);background:var(--amber-dim);font-size:13px;color:var(--text2);line-height:1.65;}
   .price-why .pw-h{font-size:10.5px;font-family:'DM Mono',monospace;color:var(--amber);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:8px;}
   .price-why b{color:var(--text);}
+  .pw-tw{overflow-x:auto;margin-top:14px;border-radius:10px;border:1px solid rgba(232,162,61,0.22);}
+  .pw-t{width:100%;min-width:520px;border-collapse:collapse;font-size:12.5px;line-height:1.5;}
+  .pw-t th,.pw-t td{text-align:left;padding:10px 12px;border-bottom:1px solid rgba(232,162,61,0.15);vertical-align:top;}
+  .pw-t tr:last-child td{border-bottom:none;}
+  .pw-t th{color:var(--text);font-weight:600;background:rgba(232,162,61,0.08);}
+  .pw-t td:first-child{color:var(--text);font-weight:500;width:22%;}
+  .pw-t td{color:var(--text2);}
+  .pw-bl{margin-top:14px;padding:12px 14px;border-left:3px solid var(--amber);background:rgba(232,162,61,0.1);border-radius:0 8px 8px 0;color:var(--text);font-weight:500;}
   .note{margin-top:16px;padding:14px 16px;border-radius:10px;border-left:2px solid var(--accent);background:rgba(255,255,255,0.012);font-size:12.5px;color:var(--text2);line-height:1.6;}
   .note b{color:var(--text);}
 
@@ -266,6 +274,16 @@
       <div class="price-why">
         <div class="pw-h">Why $4,500</div>
         The 167 pages are spread across <b>7 different templates</b>, and each template has its own code, scripts and layout. A fix on one template does not carry over to the others, so <b>we optimise and test each template individually</b>.
+        <div class="pw-tw"><table class="pw-t">
+          <thead><tr><th></th><th>vestwell.com (Phase 1, done)</th><th>save.with.vestwell.com (this project)</th></tr></thead>
+          <tbody>
+            <tr><td>Built on</td><td>Next.js, our own code</td><td>HubSpot CMS</td></tr>
+            <tr><td>Templates</td><td>28, all sharing the same code</td><td>7, each with its own code</td></tr>
+            <tr><td>How one fix spreads</td><td>Made once in shared code, reaching all 494 URLs at once</td><td>Made in each template, so repeated up to 7 times</td></tr>
+            <tr><td>What we can change</td><td>All the code</td><td>Only what HubSpot allows; its own scripts can’t be removed</td></tr>
+          </tbody>
+        </table></div>
+        <div class="pw-bl">On vestwell.com, one fix reached every page. Here, every fix is made and tested template by template, inside HubSpot’s limits, on the pages your paid traffic lands on.</div>
       </div>
     </div>
 
