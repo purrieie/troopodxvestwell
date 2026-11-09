@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Troopod × Vestwell | HubSpot Dashboards</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B0B0D; --bg2:#131318; --bg3:#1B1B22;
+    --accent:#8B6BF7; --accent2:#7B5CF5; --accent-lt:#B49CFB;
+    --accent-dim:rgba(139,107,247,0.09); --accent-border:rgba(139,107,247,0.28); --accent-glow:rgba(139,107,247,0.25);
+    --green:#4FD18B; --amber:#E8A23D; --red:#E5645A;
+    --green-dim:rgba(79,209,139,0.12); --amber-dim:rgba(232,162,61,0.12); --red-dim:rgba(229,100,90,0.12);
+    --text:#F4F4F6; --text2:#9C9CAC; --text3:#56565F;
+    --border:rgba(255,255,255,0.06); --border2:rgba(255,255,255,0.1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased;position:relative;}
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(900px 600px at 90% -8%,rgba(139,107,247,0.14),transparent 60%);}
+  .topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:13px 40px;background:rgba(11,11,13,0.8);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+  .tb-l{display:flex;align-items:center;gap:11px;}
+  .logo-ic{width:28px;height:28px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;box-shadow:0 0 20px var(--accent-glow);}
+  .tb-t{font-size:14px;font-weight:600;letter-spacing:-0.2px;}
+  .tb-t span{color:var(--text3);font-weight:400;}
+  .tb-r{font-size:11.5px;color:var(--text3);font-family:'DM Mono',monospace;}
+  .wrap{max-width:880px;margin:0 auto;padding:54px 40px 90px;position:relative;z-index:1;zoom:1.1;}
+
+  .eyebrow{font-size:11px;color:var(--accent);letter-spacing:1.6px;text-transform:uppercase;font-family:'DM Mono',monospace;margin-bottom:14px;}
+  h1{font-size:38px;font-weight:600;letter-spacing:-1px;line-height:1.12;margin-bottom:14px;}
+  h1 em{font-style:normal;background:linear-gradient(120deg,var(--accent-lt),var(--accent));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .meta-strip{display:flex;flex-wrap:wrap;gap:26px;margin:24px 0 6px;padding:18px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .ms .ms-l{font-size:10.5px;color:var(--text3);font-family:'DM Mono',monospace;letter-spacing:.5px;text-transform:uppercase;}
+  .ms .ms-v{font-size:14px;color:var(--text);margin-top:3px;font-weight:500;}
+
+  h2{font-size:13px;color:var(--text3);letter-spacing:1.3px;text-transform:uppercase;font-family:'DM Mono',monospace;margin:50px 0 18px;display:flex;align-items:center;gap:10px;}
+  h2::after{content:"";flex:1;height:1px;background:var(--border);}
+  p.body{font-size:15px;color:var(--text2);line-height:1.78;margin-bottom:14px;max-width:720px;}
+  p.body b{color:var(--text);font-weight:600;}
+
+  .heads{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:6px 0;}
+  .head{padding:18px;border-radius:14px;border:1px solid var(--border);background:rgba(255,255,255,0.012);}
+  .head .h-n{font-size:26px;font-weight:600;letter-spacing:-0.8px;}
+  .head .h-n.red{color:var(--red);} .head .h-n.amber{color:var(--amber);} .head .h-n.green{color:var(--green);}
+  .head .h-l{font-size:12px;color:var(--text3);margin-top:5px;line-height:1.45;}
+  .hs-proof{margin-top:16px;padding:16px;border:1px solid var(--border);border-radius:14px;background:rgba(255,255,255,.012);}
+  .hs-proof-title{font-size:11px;font-family:'DM Mono',monospace;letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin-bottom:12px;}
+  .hs-shots{display:flex;gap:14px;}
+  .hs-shot{flex:1;border:1px solid var(--border);border-radius:12px;padding:12px;background:rgba(255,255,255,.012);}
+  .hs-shot img{width:100%;border-radius:8px;border:1px solid var(--border2);display:block;}
+  .hs-shot-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px;}
+  .hs-shot span{font-size:13px;font-family:'DM Mono',monospace;letter-spacing:.5px;text-transform:uppercase;color:var(--text2);font-weight:600;}
+  .hs-shot a{flex-shrink:0;color:var(--accent-lt);text-decoration:none;font-weight:500;font-size:12px;padding:9px 16px;border:1px solid var(--accent-border);border-radius:9px;background:var(--accent-dim);}
+  .hs-shot a:hover{opacity:.85;}
+  @media(max-width:600px){.hs-shots{flex-direction:column;}}
+
+  .proof-card{display:flex;align-items:center;gap:16px;padding:14px;border:1px solid var(--border);border-radius:14px;background:rgba(255,255,255,0.012);margin:14px 0 18px;}
+  .proof-card img{width:140px;border-radius:8px;border:1px solid var(--border2);flex-shrink:0;}
+  .proof-card .pc-copy{font-size:12px;color:var(--text3);line-height:1.5;}
+  .proof-card .pc-copy a{color:var(--accent-lt);text-decoration:none;font-weight:500;}
+
+  .pages{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+  .page-card{border:1px solid var(--border);border-radius:14px;padding:18px;background:rgba(255,255,255,0.012);}
+  .page-card .pc-t{font-size:12.5px;font-weight:600;margin-bottom:2px;}
+  .page-card .pc-s{font-size:10.5px;color:var(--text3);font-family:'DM Mono',monospace;margin-bottom:14px;}
+  .metric-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-top:1px solid var(--border);}
+  .metric-row:first-of-type{border-top:none;}
+  .metric-row .m-l{font-size:12px;color:var(--text2);}
+  .metric-row .m-v{font-size:12.5px;font-family:'DM Mono',monospace;display:flex;align-items:center;gap:6px;}
+  .metric-row .m-v .before{color:var(--red);}
+  .metric-row .m-v .after{color:var(--green);}
+  .metric-row .m-v .arrow{color:var(--text3);}
+
+  .mt{border-radius:14px;border:1px solid var(--border);overflow:hidden;}
+  .mrow{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;padding:13px 20px;border-bottom:1px solid var(--border);align-items:center;}
+  .mrow:last-child{border-bottom:none;} .mrow.head{background:var(--bg3);}
+  .mrow.head div{font-size:10.5px;color:var(--text3);font-family:'DM Mono',monospace;letter-spacing:.5px;text-transform:uppercase;}
+  .mc{font-size:13.5px;font-family:'DM Mono',monospace;} .mc.lbl{font-family:'DM Sans',sans-serif;color:var(--text2);}
+  .mc.amber{color:var(--amber);} .mc.green{color:var(--green);}
+
+  .caveat{border-radius:14px;border:1px solid var(--accent-border);background:rgba(139,107,247,0.05);padding:20px 22px;}
+  .caveat .c-h{font-size:10.5px;font-family:'DM Mono',monospace;color:var(--accent);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:12px;}
+  .caveat p{font-size:13.5px;color:var(--text2);line-height:1.7;margin-bottom:10px;} .caveat p:last-child{margin-bottom:0;} .caveat b{color:var(--text);}
+
+  .plan{display:flex;gap:0;margin-top:6px;position:relative;}
+  .plan::before{content:"";position:absolute;top:15px;left:12.5%;right:12.5%;height:2px;background:linear-gradient(90deg,var(--accent),var(--border));}
+  .pstep{flex:1;text-align:center;padding:0 10px;position:relative;}
+  .pstep .pn{width:32px;height:32px;border-radius:50%;margin:0 auto 13px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:12px;font-weight:600;background:var(--bg3);border:1px solid var(--accent-border);color:var(--accent);position:relative;z-index:2;}
+  .pstep h4{font-size:13.5px;font-weight:600;margin-bottom:5px;} .pstep p{font-size:12px;color:var(--text3);line-height:1.5;}
+
+  .track{border:1px solid var(--accent-border);border-radius:16px;padding:24px;background:linear-gradient(150deg,rgba(139,107,247,0.07),rgba(139,107,247,0.015));margin-bottom:14px;transition:box-shadow .25s ease,transform .25s ease,background .25s ease;}
+  .track:hover{box-shadow:0 0 56px -20px var(--accent-glow);transform:translateY(-2px);background:linear-gradient(150deg,rgba(139,107,247,0.12),rgba(139,107,247,0.03));}
+  .track-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:6px;flex-wrap:wrap;}
+  .track-h .t-name{font-size:16px;font-weight:600;}
+  .track-h .t-tag{font-size:10px;font-family:'DM Mono',monospace;padding:3px 9px;border-radius:5px;background:var(--accent-dim);color:var(--accent-lt);border:1px solid var(--accent-border);letter-spacing:.4px;text-transform:uppercase;}
+  .track .t-scope{font-size:12.5px;color:var(--text3);margin-bottom:18px;line-height:1.6;max-width:640px;}
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+  .price-grid.two{grid-template-columns:1fr 1fr;}
+  .price-box{border:1px solid var(--border);border-radius:12px;padding:16px 18px;background:rgba(255,255,255,0.02);}
+  .price-box .p-l{font-size:10.5px;color:var(--text3);font-family:'DM Mono',monospace;letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px;}
+  .price-box .p-v{font-size:22px;font-weight:600;letter-spacing:-.5px;color:var(--accent-lt);}
+  .price-box .p-v span{font-size:12px;color:var(--text3);font-weight:400;}
+  .price-box .p-d{font-size:11.5px;color:var(--text3);margin-top:6px;line-height:1.5;}
+
+  .note{margin-top:16px;padding:14px 16px;border-radius:10px;border-left:2px solid var(--accent);background:rgba(255,255,255,0.012);font-size:12.5px;color:var(--text2);line-height:1.6;}
+  .note b{color:var(--text);}
+
+  .foot{margin-top:56px;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12.5px;color:var(--text3);}
+  .foot b{color:var(--text2);} .foot a{color:var(--accent-lt);text-decoration:none;}
+
+  @media(max-width:820px){
+    .wrap{padding:36px 20px 70px;} .topbar{padding:13px 20px;} h1{font-size:28px;}
+    .heads,.pages,.price-grid{grid-template-columns:1fr;}
+    .price-grid.two{grid-template-columns:1fr;}
+    .mrow{grid-template-columns:1.4fr 1fr 1fr;}
+    .plan{flex-wrap:wrap;gap:18px;} .plan::before{display:none;} .pstep{flex:1 1 40%;text-align:left;} .pstep .pn{margin:0 0 10px;}
+    .track-h{flex-direction:column;align-items:flex-start;}
+  }
+  @media(max-width:480px){
+    .wrap{zoom:1;padding:28px 16px 60px;}
+    .topbar{padding:11px 16px;}
+    .tb-t{font-size:13px;} .tb-t span{display:none;}
+    .tb-r{font-size:10px;}
+    h1{font-size:24px;}
+    .meta-strip{gap:16px 22px;}
+    .proof-card{flex-direction:column;align-items:flex-start;}
+    .proof-card img{width:100%;}
+    .foot{flex-direction:column;gap:6px;}
+  }
+  .approach{display:grid;grid-template-columns:1fr 44px 1fr;gap:0;align-items:stretch;margin-top:4px;}
+  .a-card{border:1px solid var(--accent-border);padding:24px;border-radius:16px;background:linear-gradient(160deg,rgba(139,107,247,0.07),rgba(139,107,247,0.015));display:flex;flex-direction:column;transition:box-shadow .25s ease,transform .25s ease,background .25s ease;}
+  .a-card:hover{box-shadow:0 0 56px -20px var(--accent-glow);transform:translateY(-2px);background:linear-gradient(160deg,rgba(139,107,247,0.12),rgba(139,107,247,0.03));}
+  .a-card .a-tag{font-size:10px;font-family:'DM Mono',monospace;color:var(--accent-lt);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:14px;}
+  .a-card .a-top{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+  .a-card .a-n{width:36px;height:36px;flex:none;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:14px;font-weight:600;background:var(--accent-dim);border:1px solid var(--accent-border);color:var(--accent-lt);}
+  .a-card h4{font-size:16px;font-weight:600;line-height:1.3;}
+  .a-card p{font-size:13px;color:var(--text3);line-height:1.65;margin-top:auto;padding-top:10px;}
+  .a-arrow{display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:20px;}
+  @media(max-width:820px){
+    .approach{grid-template-columns:1fr;gap:14px;}
+    .a-arrow{transform:rotate(90deg);padding:2px 0;}
+  }
+  .steps{display:flex;flex-direction:column;gap:12px;margin-top:6px;}
+  .step{display:flex;gap:18px;align-items:flex-start;border:1px solid var(--border);border-radius:14px;padding:20px 22px;background:rgba(255,255,255,0.012);}
+  .step-n{width:36px;height:36px;flex:none;border-radius:10px;background:var(--accent-dim);border:1px solid var(--accent-border);color:var(--accent-lt);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:14px;font-weight:600;}
+  .step-body h4{font-size:14.5px;font-weight:600;margin-bottom:5px;}
+  .step-body p{font-size:13px;color:var(--text2);line-height:1.65;max-width:600px;}
+  @media(max-width:820px){
+    .step{padding:16px 18px;gap:14px;}
+  }
+  .terms{border-radius:14px;border:1px solid var(--border);background:rgba(255,255,255,0.012);padding:24px 26px;margin-top:16px;}
+  .terms .t-h{font-size:10.5px;font-family:'DM Mono',monospace;color:var(--text3);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:16px;}
+  .terms ol{list-style:none;counter-reset:term;display:flex;flex-direction:column;gap:13px;}
+  .terms li{counter-increment:term;font-size:13px;color:var(--text2);line-height:1.65;padding-left:28px;position:relative;}
+  .terms li::before{content:counter(term);position:absolute;left:0;top:1px;width:18px;height:18px;border-radius:5px;background:var(--accent-dim);border:1px solid var(--accent-border);color:var(--accent-lt);font-size:10px;font-family:'DM Mono',monospace;display:flex;align-items:center;justify-content:center;}
+  .terms li b{color:var(--text);}
+  .mt3 .mrow{grid-template-columns:1.6fr 1fr 1fr;}
+</style>
+
+<style>
+.page-card .m-v{white-space:nowrap;font-size:12px;padding-left:10px}.mt .mrow .mc{font-family:inherit}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 14px}
+.tab{all:unset;cursor:pointer;font-size:14px;padding:9px 14px;border-radius:999px;border:1px solid var(--border2);color:var(--text2)}
+.tab:hover{border-color:rgba(139,107,247,.5)}.tab.on{background:#FF5C35;border-color:#FF5C35;color:#fff;font-weight:600}
+.tab:focus-visible,.hs-tile:focus-visible{outline:2px solid #FF5C35;outline-offset:2px}
+.hs{background:#F5F8FA;border-radius:14px;overflow:hidden;color:#33475B;font-family:'Lexend Deca',system-ui,sans-serif;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.hs-bar{background:#213343;color:#fff;display:flex;align-items:center;gap:10px;padding:10px 16px;font-size:13px}
+.hs-bar i{width:10px;height:10px;border-radius:50%;background:#FF5C35;display:inline-block}
+.hs-bar span{color:#B0C1D4;margin-left:auto;font-size:12px}
+.hs-hd{padding:16px 18px 4px;display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.hs-hd b{font-size:18px;font-weight:600;color:#213343}.hs-hd span{font-size:12.5px;color:#7C98B6}
+.hs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:12px 18px 18px}
+.hs-tile{all:unset;cursor:pointer;box-sizing:border-box;background:#fff;border:1px solid #DFE3EB;border-radius:4px;padding:12px 14px;display:flex;flex-direction:column;gap:8px;min-height:170px}
+.hs-tile:hover{border-color:#00A4BD}.hs-tile.sel{border-color:#00A4BD;box-shadow:0 0 0 1px #00A4BD}
+.tt{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;font-size:13.5px;font-weight:500;color:#213343}
+.chip{font-size:11px;border-radius:3px;padding:2px 6px;white-space:nowrap;font-weight:500}
+.c-Ready{background:#E5F8F6;color:#00806F}.c-After{background:#FEF5E4;color:#A06A0A}.c-Linked{background:#EAF0F6;color:#516F90}
+.viz{flex:1;display:flex;align-items:center;justify-content:center;min-height:90px}
+.big{font-size:32px;font-weight:600;color:#213343;text-align:center}.big small{display:block;font-size:11.5px;font-weight:400;color:#7C98B6}
+.lst{width:100%;font-size:12px}.lst div{display:grid;grid-template-columns:1fr 64px;gap:8px;align-items:center;padding:3px 0}.lst i{display:block;height:6px;border-radius:3px;background:#00A4BD}
+.src{font-size:11.5px;color:#7C98B6}
+.det{margin-top:14px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.det>div{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:16px 18px}
+.det i{font-style:normal;font-size:12.5px;color:var(--text3);display:block;margin-bottom:6px}.det b{font-size:15px;font-weight:500;color:var(--text);line-height:1.45;display:block}
+.sure{display:flex;gap:5px;margin-top:10px}.sure span{flex:1;height:5px;border-radius:3px;background:rgba(255,255,255,.12)}
+.hint{font-size:13px;color:var(--text3);margin-top:10px}
+@media (max-width:860px){.hs-grid{grid-template-columns:1fr 1fr}.det{grid-template-columns:1fr}}
+@media (max-width:520px){.hs-grid{grid-template-columns:1fr}}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+.tabs,.hs,.hint,.det{width:min(1240px,calc(100vw - 48px));margin-left:calc(50% - min(620px,calc(50vw - 24px)))}
+.hs-grid{grid-template-columns:repeat(4,1fr);gap:12px;padding:10px 18px 18px}
+.hs-tile{min-height:150px;padding:12px 14px}
+.viz{min-height:78px}
+.big{font-size:30px}
+@media (max-width:1000px){.hs-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.hs-grid{grid-template-columns:1fr}}
+</style>
+<style>
+.hs{background:#F5F8FA}
+.hs-bar{font-size:14px;font-weight:500}
+.hs-grid{grid-template-columns:repeat(4,1fr);gap:14px;padding:16px 18px 18px;align-items:stretch}
+.hs-tile{min-height:0;padding:14px 16px;gap:6px;justify-content:flex-start}
+.tt{font-size:13px;font-weight:500;color:#516F90;justify-content:flex-start;gap:6px;align-items:center}
+.dot{width:7px;height:7px;border-radius:50%;flex:none}.dot.a{background:#F5A623}.dot.g{background:#A3B4C6}
+.kv{font-size:26px;font-weight:600;color:#213343;line-height:1.1;display:flex;align-items:baseline;gap:8px}
+.kv em{font-style:normal;font-size:12.5px;font-weight:500}.kv em.up{color:#00806F}.kv em.dn{color:#00806F}.kv em.lv{color:#FF5C35}
+.ks{font-size:12px;color:#7C98B6;margin-bottom:4px}
+.ch{margin-top:auto}
+.dn2{display:flex;align-items:center;gap:14px;margin-top:4px}
+.lg{display:flex;flex-wrap:wrap;gap:10px;font-size:11.5px;color:#516F90;margin-top:6px}.lg i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:5px}
+.hb{display:flex;flex-direction:column;gap:7px;margin-top:4px}.hb div{display:grid;grid-template-columns:110px 1fr 70px;gap:10px;align-items:center;font-size:12.5px;color:#33475B}
+.hb i{display:block;height:9px;background:#EAF0F6;border-radius:5px;overflow:hidden}.hb i b{display:block;height:100%;background:#00A4BD;border-radius:5px}
+.hb em{font-style:normal;text-align:right;font-weight:500;color:#213343}
+.tb2 div{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-top:1px solid #EAF0F6;font-size:12.5px}.tb2 div:first-child{border-top:none}.tb2 b{font-weight:500;color:#213343;white-space:nowrap}
+.tb2 span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media (max-width:1000px){.hs-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.hs-grid{grid-template-columns:1fr}.hs-tile{grid-column:span 1!important}}
+</style>
+<style>
+.hs-grid{gap:12px;padding:14px 16px 16px}.hs-tile{padding:12px 14px;gap:4px}
+.kv{font-size:24px}.hb{gap:5px}.hb div{font-size:12px}.hb i{height:8px}
+.tb2 div{padding:5px 0;font-size:12px}
+</style>
+<style>
+.wrap{max-width:1120px}
+p.body{max-width:760px}
+/* found -> fix */
+.fix{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+.fx{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:22px 24px;display:grid;grid-template-rows:auto 1fr auto auto;gap:10px}
+.fx .lab{font-size:12.5px;color:var(--text3)}
+.fx .now{font-size:16.5px;color:var(--text);line-height:1.5}
+.fx .rule{height:1px;background:var(--border);margin:6px 0}
+.fx .do{display:flex;gap:10px;align-items:baseline;font-size:15.5px;color:var(--green);line-height:1.45}
+.fx .do::before{content:"→";color:var(--green)}
+.have{margin-top:14px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:var(--green-dim);border:1px solid rgba(80,200,120,.25);border-radius:14px;padding:14px 20px}
+.have b{color:var(--text);font-weight:600;font-size:15px}
+.have span{font-size:13.5px;color:var(--text2);border:1px solid var(--border2);border-radius:999px;padding:5px 12px;background:var(--bg2)}
+/* dashboard at page width */
+.tabs,.hs,.hint,.det{width:auto;margin-left:0}
+/* plan */
+.plan2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ph2c{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:24px 26px}
+.ph2c .wk{font-size:13px;color:var(--accent-lt)}
+.ph2c h3{font-size:22px;font-weight:600;color:var(--text);margin:6px 0 14px;letter-spacing:-.01em}
+.ph2c ul{list-style:none}
+.ph2c li{display:grid;grid-template-columns:150px 1fr;gap:14px;padding:12px 0;border-top:1px solid var(--border);font-size:14.5px;color:var(--text2);line-height:1.45}
+.ph2c li b{color:var(--text);font-weight:600}
+/* delivered */
+.done{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.dn{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:22px 24px}
+.dn .ph2{font-size:12.5px;color:var(--text3)}
+.dn h4{font-size:16px;font-weight:600;color:var(--text);margin:6px 0 12px}
+.dn .num{font-size:30px;font-weight:600;letter-spacing:-.02em}
+.dn .num s{color:var(--red);text-decoration:none}.dn .num em{font-style:normal;color:var(--green)}
+.dn p{font-size:13.5px;color:var(--text2);margin-top:6px;line-height:1.45}
+/* next steps strip */
+.next{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.nx{padding:20px 22px;border-left:1px solid var(--border);background:var(--bg2)}.nx:first-child{border-left:none}
+.nx i{font-style:normal;display:inline-flex;width:26px;height:26px;border-radius:50%;align-items:center;justify-content:center;font-size:13px;font-weight:600;background:var(--accent-dim);color:var(--accent-lt);border:1px solid var(--accent-border)}
+.nx b{display:block;color:var(--text);font-size:15.5px;font-weight:600;margin:12px 0 4px}.nx span{font-size:13.5px;color:var(--text2);line-height:1.45}
+.terms ol li{font-size:14px}
+@media (max-width:900px){.fix,.plan2,.done{grid-template-columns:1fr}.next{grid-template-columns:1fr 1fr}.nx:nth-child(3){border-left:none}.ph2c li{grid-template-columns:1fr;gap:2px}}
+@media (max-width:520px){.next{grid-template-columns:1fr}.nx{border-left:none;border-top:1px solid var(--border)}.nx:first-child{border-top:none}}
+</style>
+<style>
+.fixedbar{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border);border-radius:14px;overflow:hidden;margin:26px 0 8px}
+.fixedbar div{padding:16px 20px;border-left:1px solid var(--border);background:var(--bg2)}.fixedbar div:first-child{border-left:none}
+.fixedbar i{font-style:normal;font-size:12.5px;color:var(--text3);display:block}
+.fixedbar b{display:block;font-size:22px;font-weight:600;margin-top:4px;letter-spacing:-.01em}
+.fixedbar b s{color:var(--red);text-decoration:none}.fixedbar b em{font-style:normal;color:var(--green)}
+.fixedbar span{font-size:13px;color:var(--text2)}
+.agreed{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.ag{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:18px 20px}
+.ag h4{display:flex;justify-content:space-between;align-items:baseline;font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px}
+.ag h4 span{font-size:12.5px;font-weight:400;color:var(--text3)}
+.ag ul{list-style:none}.ag li{font-size:13.5px;color:var(--text2);padding:6px 0;border-top:1px solid var(--border);line-height:1.4}.ag li:first-child{border-top:none}
+.split{display:flex;gap:18px;flex-wrap:wrap;font-size:13.5px;color:var(--text2);margin:14px 0 0}
+.split b{color:var(--text);font-weight:600}
+.steps2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.st{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:24px 26px}
+.st .n{font-size:13px;color:var(--accent-lt)}
+.st h3{font-size:22px;font-weight:600;color:var(--text);margin:6px 0 14px;letter-spacing:-.01em}
+.st ul{list-style:none}.st li{display:grid;grid-template-columns:150px 1fr;gap:14px;padding:11px 0;border-top:1px solid var(--border);font-size:14.5px;color:var(--text2);line-height:1.45}.st li b{color:var(--text);font-weight:600}
+.gantt{border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--bg2)}
+.gr{display:grid;grid-template-columns:220px repeat(4,1fr);align-items:center;border-top:1px solid var(--border)}.gr:first-child{border-top:none}
+.gr>div{padding:14px 18px;font-size:14.5px;color:var(--text)}
+.gr.h>div{font-size:12.5px;color:var(--text3);padding:12px 18px}
+.gr .bar{height:30px;border-radius:8px;margin:10px 8px;display:flex;align-items:center;padding:0 12px;font-size:12.5px;color:#fff;font-weight:500}
+@media (max-width:900px){.fixedbar,.agreed,.steps2{grid-template-columns:1fr}.fixedbar div{border-left:none;border-top:1px solid var(--border)}.fixedbar div:first-child{border-top:none}.st li{grid-template-columns:1fr;gap:2px}.gr{grid-template-columns:120px repeat(4,1fr)}}
+</style>
+<style>
+.dd2{margin-top:14px;border:1px solid var(--border);border-radius:14px;background:var(--bg2)}
+.dd2 summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:16px 20px;font-size:15px;color:var(--text);font-weight:500}
+.dd2 summary::-webkit-details-marker{display:none}
+.dd2 summary i{font-style:normal;width:26px;height:26px;border-radius:50%;border:1px solid var(--accent-border);display:flex;align-items:center;justify-content:center;color:var(--accent-lt);font-size:17px}
+.dd2[open] summary i{transform:rotate(45deg)}
+.dd2 summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:14px}
+.dd2 .agreed{padding:0 16px 16px}
+</style>
+<style>
+.hs-body{display:grid;grid-template-columns:1fr 280px;align-items:stretch}
+.hs-body .hs-grid{grid-template-columns:repeat(3,1fr)}
+.hs-side{background:#fff;border-left:1px solid #DFE3EB;padding:18px 18px 20px;display:flex;flex-direction:column;gap:14px}
+.sd-t{font-size:15.5px;font-weight:600;color:#213343;line-height:1.35;padding-bottom:12px;border-bottom:1px solid #EAF0F6}
+.sd-f i{font-style:normal;display:block;font-size:11.5px;color:#7C98B6;margin-bottom:3px}
+.sd-f b{display:block;font-size:13.5px;font-weight:500;color:#33475B;line-height:1.45}
+.sure2{display:flex;gap:5px;margin-top:8px}.sure2 span{flex:1;height:5px;border-radius:3px}
+.sd-empty{display:flex;flex-direction:column;gap:6px;margin:auto 0;text-align:left}
+.sd-empty b{font-size:15px;color:#213343;font-weight:600}.sd-empty span{font-size:13px;color:#516F90;line-height:1.45}
+.sd-lg{display:flex;flex-direction:column;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid #EAF0F6}
+.sd-lg span{font-size:12.5px;color:#516F90;display:flex;align-items:center;gap:8px}.sd-lg i{width:9px;height:9px;border-radius:50%;display:inline-block}
+@media (max-width:1000px){.hs-body{grid-template-columns:1fr}.hs-side{border-left:none;border-top:1px solid #DFE3EB}.hs-body .hs-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.hs-body .hs-grid{grid-template-columns:1fr}}
+</style>
+<style>
+.hs-body .hb div{grid-template-columns:84px 1fr 46px;gap:8px;font-size:11.5px}
+.hs-body .tb2 div{font-size:11.5px}
+.hs-body .hs-tile{min-height:0}
+.hs-body .kv{font-size:22px}
+</style>
+<style>
+.hsrow{display:grid;grid-template-columns:1fr 290px;gap:16px;align-items:stretch}
+.hs .hs-grid{grid-template-columns:repeat(3,1fr)}
+.tp-side{background:linear-gradient(170deg,rgba(139,107,247,.22),rgba(139,107,247,.06) 60%);border:1px solid var(--accent-border);border-radius:14px;padding:22px 22px;display:flex;flex-direction:column;gap:16px;color:var(--text)}
+.tp-side .sd-t{font-size:17px;font-weight:600;color:var(--text);line-height:1.35;padding-bottom:14px;border-bottom:1px solid var(--accent-border)}
+.tp-side .sd-f i{font-style:normal;display:block;font-size:12px;color:var(--accent-lt);margin-bottom:4px}
+.tp-side .sd-f b{display:block;font-size:14.5px;font-weight:500;color:var(--text);line-height:1.5}
+.tp-side .sd-empty{margin:auto 0;display:flex;flex-direction:column;gap:6px}
+.tp-side .sd-empty b{font-size:17px;color:var(--text);font-weight:600}
+.tp-side .sd-empty span{font-size:14px;color:var(--text2);line-height:1.5}
+.tp-side .sd-lg{border-top:1px solid var(--accent-border);margin-top:14px;padding-top:14px;display:flex;flex-direction:column;gap:9px}
+.tp-side .sd-lg span{display:flex;align-items:center;gap:9px;font-size:13.5px;color:var(--text2)}
+.tp-side .sd-lg i{width:9px;height:9px;border-radius:50%;display:inline-block}
+@media (max-width:1000px){.hsrow{grid-template-columns:1fr}.hs .hs-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.hs .hs-grid{grid-template-columns:1fr}}
+</style>
+<style>
+.kv em.kup,.kv em.kdown{color:#00806F;background:none;padding:0;border:none}.kv em.klive{color:#FF5C35}
+.hs .hb div{grid-template-columns:84px 1fr 46px;gap:8px;font-size:11.5px}
+.hs .tb2 div{font-size:11.5px}.hs .kv{font-size:22px}.hs .hs-tile{min-height:0}
+</style>
+<style>
+.need2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.nd{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:22px 24px}
+.nd h4{font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px}
+.nd ul{list-style:none}.nd li{display:grid;grid-template-columns:150px 1fr;gap:14px;padding:11px 0;border-top:1px solid var(--border);font-size:14px;color:var(--text2);line-height:1.45}.nd li:first-child{border-top:none}
+.nd li b{color:var(--text);font-weight:600}
+@media (max-width:900px){.need2{grid-template-columns:1fr}.nd li{grid-template-columns:1fr;gap:2px}}
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="tb-l"><div class="logo-ic">T</div><div class="tb-t">Troopod <span>× Vestwell</span></div></div>
+    <div class="tb-r">TrooPerformance</div>
+  </div>
+  <div class="wrap">
+    <div class="eyebrow">Dashboard · Phase 1 proposal</div>
+    <h1>Every metric, <em>in one place</em></h1>
+    <p class="body">With your site faster and your SEO in place, the next step is one trusted view of your numbers. We’ll set up six HubSpot dashboards, one for each team, on the plan you already have, so everyone works from the same figures. A custom dashboard can follow later as phase 2, if needed.</p>
+    <div class="fixedbar">
+      <div><i>Already fixed · Website speed</i><b><s>50.5</s> → <em>74.5</em></b><span>Average mobile score, all 494 pages</span></div>
+      <div><i>Already fixed · HubSpot pages</i><b><em>243</em> checked</b><span>Broken pages and links fixed</span></div>
+      <div><i>Already fixed · SEO and AI search</i><b><s>491</s> → <em>0</em></b><span>Pages with wrong canonical tags</span></div>
+    </div>
+
+    <h2>Your setup today</h2>
+    <div class="fix">
+      <div class="fx"><div class="lab">Calls and meetings</div><div class="now">Sales calls and demo meetings are in Salesforce. Their sync into HubSpot is switched off.</div><div class="rule"></div><div class="do">Switch it on and bring in past records.</div></div>
+      <div class="fx"><div class="lab">Sign-up app</div><div class="now">HubSpot isn’t on the sign-up app, so sign-ups arrive without a source.</div><div class="rule"></div><div class="do">Add HubSpot to the sign-up app.</div></div>
+      <div class="fx"><div class="lab">Website visits</div><div class="now">HubSpot records only the first page of each visit, and counts test sites too.</div><div class="rule"></div><div class="do">Record every page, on live sites only.</div></div>
+      <div class="fx"><div class="lab">Key events</div><div class="now">Only 1 of 12 key events in GA4 is receiving data.</div><div class="rule"></div><div class="do">Repair the events.</div></div>
+    </div>
+    <div class="have"><b>Already in HubSpot, used as is</b><span>Deals and revenue</span><span>Revenue attribution</span><span>Google Ads</span><span>Meta Ads</span><span>LinkedIn Ads</span><span>Live chat</span></div>
+    <div class="note" style="margin-top:14px"><b>Why HubSpot for phase 1:</b> it already holds your leads, deals, revenue and ad data, which GA4 can’t show. GA4 tracking is fixed as part of step 1, and GA4 reports are linked where they fit better.</div>
+
+    <h2>Metrics agreed with your team</h2>
+    <div class="heads">
+      <div class="head"><div class="h-n">33</div><div class="h-l">Metrics agreed, across 6 teams</div></div>
+      <div class="head"><div class="h-n green">29</div><div class="h-l">Shown inside HubSpot dashboards</div></div>
+      <div class="head"><div class="h-n amber">4</div><div class="h-l">In GA4 or Heap, linked from the dashboard</div></div>
+    </div>
+    <details class="dd2"><summary><span>See all 33 metrics by team</span><i>+</i></summary>
+    <div class="agreed"><div class="ag"><h4>Website<span>7</span></h4><ul><li>Weekly visits by source</li><li>New vs returning visits</li><li>Top pages</li><li>Top 10 user pathways</li><li>Top clicks: Get started, Log in, Book a demo</li><li>Chat opened and conversations started</li><li>Leads created by source</li></ul></div><div class="ag"><h4>Leadership<span>7</span></h4><ul><li>Revenue won from the website</li><li>Real marketing leads</li><li>Demo meetings booked</li><li>Cost per lead</li><li>Cost per demo meeting</li><li>Marketing revenue by lead source</li><li>Cost per opportunity</li></ul></div><div class="ag"><h4>Performance marketing<span>6</span></h4><ul><li>Leads by channel</li><li>Top 5 pages: engagement and clicks</li><li>Book-a-call visits and form fills</li><li>Homepage user journey</li><li>Visitors right now</li><li>Visits by channel, prospects only</li></ul></div><div class="ag"><h4>Content & search<span>4</span></h4><ul><li>Desktop vs phone</li><li>Where people drop off</li><li>Marketing email results</li><li>Engaged visits</li></ul></div><div class="ag"><h4>Sales<span>6</span></h4><ul><li>Demo meetings held</li><li>Lead → meeting → deal → won</li><li>Contacts created</li><li>Leads not called within 24 hours</li><li>Calls per new lead</li><li>Calls placed and voicemail rate</li></ul></div><div class="ag"><h4>Product<span>3</span></h4><ul><li>Online application funnel</li><li>Prospects vs customers</li><li>Customer logins</li></ul></div></div><div style="padding:0 20px 18px;font-size:13.5px;color:var(--text2)"><b style="color:var(--text)">Later phase:</b> account use (which product features customers use), as agreed.</div></details>
+
+    <h2>How each metric shows in HubSpot</h2>
+    <div class="tabs" id="tabs" role="tablist" style="margin-top:6px"></div>
+    <div class="hsrow"><div class="hs" id="hs"></div><aside class="tp-side" id="side" aria-live="polite"></aside></div>
+    <div class="hint" id="hint">Click any report to see where its data comes from. &nbsp;<span style="color:#F5A623">●</span> after our setup &nbsp; <span style="color:#A3B4C6">●</span> opens in GA4 or Heap</div>
+    <div class="det" id="det" hidden></div>
+
+    <h2>What we do</h2>
+    <div class="steps2">
+      <div class="st"><div class="n">Step 1</div><h3>Fix the data</h3><ul>
+        <li><b>Website</b><span>Every page recorded, live sites only, key button clicks tracked.</span></li>
+        <li><b>Sign-up app</b><span>HubSpot added, each sign-up step counted.</span></li>
+        <li><b>Calls and meetings</b><span>Brought in from Salesforce, with results and past records.</span></li></ul></div>
+      <div class="st"><div class="n">Step 2</div><h3>Build the dashboards</h3><ul>
+        <li><b>Six dashboards</b><span>One per team, in HubSpot.</span></li>
+        <li><b>GA4 and Heap</b><span>Saved reports, linked from HubSpot.</span></li>
+        <li><b>Hand-over</b><span>Numbers checked against each tool, and a walkthrough with your team.</span></li></ul></div>
+    </div>
+
+    <h2>Timeline</h2>
+    <div class="mt mt3">
+      <div class="mrow" style="grid-template-columns:160px 1fr"><div class="mc lbl">Weeks 1–2</div><div class="mc" style="font-family:inherit">Fix the data: website, sign-up app, and calls and meetings from Salesforce</div></div>
+      <div class="mrow" style="grid-template-columns:160px 1fr"><div class="mc lbl">Weeks 3–4</div><div class="mc" style="font-family:inherit">Build the six dashboards and GA4 and Heap links, then hand over</div></div>
+    </div>
+
+    <h2>What we need from you</h2>
+    <p class="body">Everything in one go, so we can start without back-and-forth. We prepare every change; your team reviews and publishes.</p>
+    <div class="need2">
+      <div class="nd"><h4>Access</h4><ul>
+        <li><b>HubSpot</b><span>Permission to edit reports and dashboards, properties, workflows, tracking settings, custom events and the Salesforce connection settings.</span></li>
+        <li><b>Salesforce</b><span>A read-only user, to check the call and meeting fields we bring into HubSpot.</span></li>
+        <li><b>LeanData</b><span>View access to BookIt, or confirmation that its meetings are readable in Salesforce.</span></li>
+        <li><b>Google Tag Manager</b><span>Edit access. We set up the changes in a workspace, and your team reviews and publishes them.</span></li>
+        <li><b>GA4</b><span>Editor access, to repair the key events and save the linked reports.</span></li>
+        <li><b>Heap</b><span>View access, plus the application funnel view your team uses today.</span></li>
+        <li><b>Semrush</b><span>View access, to track the SEO and AI visibility results from phase 3.</span></li>
+      </ul></div>
+      <div class="nd"><h4>Decisions and approvals</h4><ul>
+        <li><b>Real leads</b><span>Which forms count as real marketing leads.</span></li>
+        <li><b>Meetings held</b><span>Which Salesforce field marks a demo meeting as held (we found Meeting No Show and Meeting Attendance).</span></li>
+        <li><b>Calls and meetings sync</b><span>Approval to switch on the Salesforce calls and meetings sync into HubSpot, and to import past records.</span></li>
+        <li><b>Online application</b><span>A developer contact, in case a sign-up step needs a small code change for tracking.</span></li>
+        <li><b>Dashboard viewers</b><span>Who should see each of the six dashboards.</span></li>
+        <li><b>Top 5 pages</b><span>We’ll use your five most-visited pages unless you prefer specific ones.</span></li>
+      </ul></div>
+    </div>
+
+    <h2>Commercials</h2>
+    <div class="track">
+      <div class="track-h"><div class="t-name">HubSpot Dashboards · Phase 1</div><div class="t-tag">33 metrics · 6 dashboards</div></div>
+      <div class="price-grid two">
+        <div class="price-box"><div class="p-l">One-time</div><div class="p-v">$X,XXX</div><div class="p-d">Steps 1 and 2</div></div>
+        <div class="price-box"><div class="p-l">Timeline</div><div class="p-v">4 <span>weeks</span></div><div class="p-d">From kickoff</div></div>
+      </div>
+    </div>
+    
+
+    <div class="terms">
+      <div class="t-h">Terms &amp; notes</div>
+      <ol>
+        <li><b>Plan:</b> runs on your existing HubSpot Enterprise plan.</li>
+        <li><b>Salesforce:</b> call and meeting reports rely on reps recording results in Salesforce.</li>
+        <li><b>New tracking:</b> clicks and sign-up steps count from go-live; past calls and meetings are imported once.</li>
+        <li><b>Numbers:</b> HubSpot, GA4 and Heap count visits differently, so figures will be close, not identical.</li>
+        <li><b>Phase 2:</b> a custom dashboard, if needed later, is scoped and quoted separately.</li>
+        <li><b>Timeline:</b> delays in approvals move it by the same amount.</li>
+      </ol>
+    </div>
+
+    <h2>Next steps</h2>
+    <div class="next">
+      <div class="nx"><i>1</i><b>Approve</b><span>Scope and fee.</span></div>
+      <div class="nx"><i>2</i><b>Kickoff</b><span>Access and decisions, as listed above.</span></div>
+      <div class="nx"><i>3</i><b>Weeks 1–2</b><span>We fix the data.</span></div>
+      <div class="nx"><i>4</i><b>Weeks 3–4</b><span>Dashboards live.</span></div>
+    </div>
+
+    <div class="foot">
+      <div><b>TrooPerformance</b> · by Troopod · troopod.io</div>
+      <div><a href="mailto:nj@troopod.io">nj@troopod.io</a></div>
+    </div>
+  </div>
+<script>const TEAMS=[["web", "Website", "How people find and use the site"], ["lead", "Leadership", "Is the website bringing in business?"], ["perf", "Performance marketing", "Which ads and channels work"], ["cont", "Content & search", "Which pages work, and where people leave"], ["sales", "Sales", "How fast and how well leads are followed up"], ["prod", "Product", "How people sign up, and how customers use Vestwell"]];const METS=[["w1", "web", "Weekly visits by source", "stack", "Ready", "HubSpot website reports", "We fix how HubSpot counts page visits, so every page is recorded.", "Sure", "HubSpot"], ["w2", "web", "New vs returning visits", "donut", "Ready", "HubSpot website reports", "Same fix as above.", "Likely", "HubSpot"], ["w3", "web", "Top pages", "list", "Ready", "HubSpot website reports", "Same fix as above.", "Sure", "HubSpot"], ["w4", "web", "Top 10 user pathways", "paths", "After setup", "HubSpot journey report (your Enterprise plan)", "We set up the report once page visits are recorded properly.", "Likely", "HubSpot"], ["w5", "web", "Top clicks: Get started, Log in, Book a demo", "bars", "After setup", "HubSpot click tracking", "We add a small tag to track these three buttons.", "Likely", "HubSpot"], ["w6", "web", "Chat opened and conversations started", "line", "After setup", "HubSpot chat", "Conversations are tracked already. We add tracking for when the chat is opened.", "Likely", "HubSpot"], ["w7", "web", "Leads created by source", "bars", "After setup", "HubSpot contacts", "We add HubSpot to the sign-up app, so every sign-up keeps its source.", "Likely", "HubSpot"], ["l1", "lead", "Revenue won from the website", "num", "Ready", "Salesforce deals, already synced to HubSpot", "Nothing new. Deals already sync both ways.", "Likely", "HubSpot"], ["l2", "lead", "Real marketing leads", "line", "After setup", "HubSpot contacts", "We tag leads from marketing forms only, leaving out customer forms.", "Likely", "HubSpot"], ["l3", "lead", "Demo meetings booked", "line", "After setup", "Salesforce meetings (LeanData)", "We switch on the Salesforce meetings sync, and bring in past meetings once.", "Likely", "HubSpot"], ["l4", "lead", "Cost per lead", "num", "Ready", "Google, Meta and LinkedIn ads, already in HubSpot", "Nothing new. Your ad accounts are already connected.", "Sure", "HubSpot"], ["l5", "lead", "Cost per demo meeting", "num", "After setup", "Ads + Salesforce meetings", "Works once demo meetings come into HubSpot.", "Likely", "HubSpot"], ["l6", "lead", "Marketing revenue by lead source", "bars", "Ready", "HubSpot attribution (your Enterprise plan)", "Nothing new. The report is already available.", "Likely", "HubSpot"], ["l7", "lead", "Cost per opportunity", "kpi", "After setup", "Ads (already in HubSpot) + opportunities from Salesforce", "Works once opportunities sync from Salesforce, which is already connected.", "Likely", "HubSpot"], ["p1", "perf", "Leads by channel", "bars", "After setup", "HubSpot contacts", "Same as leads by source.", "Likely", "HubSpot"], ["p2", "perf", "Top 5 pages: engagement and clicks", "list", "After setup", "HubSpot website reports and click tracking", "We pick your five most-visited pages and show how people engage and where they click.", "Likely", "HubSpot"], ["p3", "perf", "Book-a-call visits and form fills", "num", "Ready", "HubSpot pages and forms", "Nothing new.", "Sure", "HubSpot"], ["p4", "perf", "Homepage user journey", "paths", "After setup", "HubSpot journey report", "Same as user pathways, starting at the homepage.", "Likely", "HubSpot"], ["p5", "perf", "Visitors right now", "live", "Linked", "GA4 live view", "A link from the dashboard. HubSpot has no live view.", "Sure", "GA4, linked"], ["p6", "perf", "Visits by channel, prospects only", "stack", "Linked", "GA4", "A saved GA4 report that leaves out customers, linked from the dashboard.", "Likely", "GA4, linked"], ["c1", "cont", "Desktop vs phone", "donut", "Ready", "HubSpot website reports", "Nothing new.", "Sure", "HubSpot"], ["c2", "cont", "Where people drop off", "funnel", "After setup", "HubSpot journey report", "We agree the key steps with you, then set up the report.", "Likely", "HubSpot"], ["c3", "cont", "Marketing email results", "num", "Ready", "HubSpot email", "Nothing new.", "Sure", "HubSpot"], ["c4", "cont", "Engaged visits", "line", "Linked", "GA4", "A saved GA4 report, linked from the dashboard.", "Sure", "GA4, linked"], ["s1", "sales", "Demo meetings held", "num", "After setup", "Salesforce meetings", "We bring in whether each meeting happened, from Salesforce.", "Needs a test", "HubSpot"], ["s2", "sales", "Lead → meeting → deal → won", "funnel", "After setup", "HubSpot + Salesforce", "We mark each stage as it happens, so the whole journey shows in one report.", "Likely", "HubSpot"], ["s3", "sales", "Contacts created", "line", "Ready", "HubSpot contacts", "Nothing new.", "Sure", "HubSpot"], ["s4", "sales", "Leads not called within 24 hours", "num", "After setup", "Salesforce calls (Salesloft, Aircall)", "We switch on the Salesforce calls sync and time the first call.", "Likely", "HubSpot"], ["s5", "sales", "Calls per new lead", "num", "After setup", "Salesforce calls", "Works once calls come into HubSpot.", "Likely", "HubSpot"], ["s6", "sales", "Calls placed and voicemail rate", "donut", "After setup", "Salesforce calls", "We bring in each call’s result from Salesforce.", "Likely", "HubSpot"], ["r1", "prod", "Online application funnel", "funnel", "After setup", "The online application (today seen in Heap and Salesforce)", "We track each step of the application in HubSpot, matching the view your team uses in Heap.", "Likely", "HubSpot"], ["r2", "prod", "Prospects vs customers", "donut", "After setup", "HubSpot", "We mark visitors who log in as customers.", "Likely", "HubSpot"], ["r3", "prod", "Customer logins", "line", "Linked", "Heap", "A Heap board, linked from the dashboard.", "Likely", "Heap, linked"]];const SAMPLE={"w1": ["stack", "12,480", "+8%", "weekly visits", [["Direct", 42], ["Organic", 30], ["Paid", 17], ["Referral", 11]]], "w2": ["donut", "71%", "", "new visitors", ["New", "Returning", 71]], "w3": ["table", "", "", "", [["/", "4,210"], ["/for/small-businesses", "1,380"], ["/able", "1,120"], ["/pricing", "960"]]], "w4": ["table", "", "", "", [["Home › Get started › Sign-up", "1,240"], ["Blog › Book a demo", "310"], ["Pricing › Book a call", "220"]]], "w5": ["bars", "", "", "", [["Get started", 1880], ["Log in", 1410], ["Book a demo", 520]]], "w6": ["kpi", "270", "+12%", "chats opened", null], "w7": ["bars", "216", "+12%", "leads", [["Organic", 78], ["Paid search", 64], ["Direct", 40], ["Referral", 22]]], "l1": ["kpi", "$412K", "+6%", "won this quarter", null], "l2": ["kpi", "171", "+9%", "this month", null], "l3": ["kpi", "48", "+5%", "this month", null], "l4": ["kpi", "$186", "−4%", "per lead", null], "l5": ["kpi", "$910", "−3%", "per meeting", null], "l6": ["bars", "$1.2M", "", "this year", [["Organic", "$480K"], ["Paid", "$360K"], ["Email", "$210K"], ["Referral", "$150K"]]], "p1": ["bars", "216", "", "leads", [["Organic", 78], ["Paid search", 64], ["Direct", 40], ["Referral", 22]]], "p2": ["table", "", "", "", [["/", "4,210 visits · Get started"], ["/for/small-businesses", "1,380 · Book a demo"], ["/able", "1,120 · Log in"], ["/pricing", "960 · Book a call"], ["/401k-plans", "880 · Get started"]]], "p3": ["kpi", "1,240", "+7%", "visits · 96 form fills", null], "p4": ["table", "", "", "", [["Home › Pricing › Book a call", "420"], ["Home › Get started › Sign-up", "380"], ["Home › Log in", "990"]]], "p5": ["kpi", "37", "live", "on the site now", null], "p6": ["stack", "9,860", "+5%", "prospect visits", [["Direct", 35], ["Organic", 38], ["Paid", 18], ["Referral", 9]]], "c1": ["donut", "58%", "", "desktop", ["Desktop", "Phone", 58]], "c2": ["funnel", "", "", "", [["Homepage", 12480], ["Pricing", 3900], ["Book a call", 1240], ["Form sent", 96]]], "c3": ["kpi", "38%", "+2 pts", "open rate", null], "c4": ["kpi", "64%", "+3 pts", "engaged visits", null], "s1": ["kpi", "31", "of 48", "meetings held", null], "s2": ["funnel", "", "", "", [["Lead", 216], ["Meeting", 48], ["Deal", 19], ["Won", 7]]], "s3": ["kpi", "482", "+10%", "this month", null], "s4": ["kpi", "14%", "−3 pts", "of new leads", null], "s5": ["kpi", "2.6", "+0.4", "calls per lead", null], "s6": ["donut", "1,240", "", "calls placed · 37% voicemail", ["Connected", "Voicemail", 63]], "r1": ["funnel", "", "", "", [["Started", 1240], ["Company details", 860], ["Plan picked", 640], ["Submitted", 610]]], "r2": ["donut", "68%", "", "prospects", ["Prospects", "Customers", 68]], "r3": ["kpi", "18,420", "+4%", "logins this month", null], "l7": ["kpi", "$2,450", "−5%", "per opportunity", null]};
+const TELL={"w1": "Where your visitors come from each week.", "w2": "How many visitors are new to Vestwell, and how many come back.", "w3": "Which pages get the most visits.", "w4": "The most common routes people take through the site.", "w5": "How often people click Get started, Log in and Book a demo.", "w6": "How many visitors open the chat and start a conversation.", "w7": "Which sources bring in new leads.", "l1": "How much closed revenue came from website leads.", "l2": "How many genuine marketing leads came in, with customer forms left out.", "l3": "How many demo meetings were booked.", "l4": "What each lead costs across Google, Meta and LinkedIn.", "l5": "What each booked demo meeting costs.", "l6": "Which lead sources created the most revenue.", "p1": "Which channels bring in leads.", "p2": "How people engage with your five busiest pages, and what they click.", "p3": "How many people visit the book-a-call page and fill in the form.", "p4": "Where people go after landing on the homepage.", "p5": "How many people are on the site right now.", "p6": "Where prospects come from, with customers logging in left out.", "c1": "How many visits come from desktop vs phone.", "c2": "At which step people leave on the way to booking a call.", "c3": "How marketing emails perform: opens, clicks and unsubscribes.", "c4": "How many visits are engaged, not just a quick look.", "s1": "How many booked demos actually took place.", "s2": "How many leads become meetings, deals and customers.", "s3": "How many new contacts were added.", "s4": "How many new leads weren’t called within a day.", "s5": "How many calls each new lead gets.", "s6": "How many calls the team makes, and how many go to voicemail.", "r1": "How people move through each step of the online application, and where they drop off.", "r2": "How many visitors are prospects, and how many are existing customers.", "r3": "How often customers log in.", "l7": "What it costs in ads to create each sales opportunity."};const UPD={"w1": "Daily", "w2": "Daily", "w3": "Daily", "w4": "Daily", "w5": "Daily", "w6": "Daily", "w7": "Every hour", "l1": "Every hour", "l2": "Every hour", "l3": "Every hour", "l4": "Daily", "l5": "Daily", "l6": "Daily", "p1": "Every hour", "p2": "Daily", "p3": "Daily", "p4": "Daily", "p5": "Live", "p6": "Daily", "c1": "Daily", "c2": "Daily", "c3": "Daily", "c4": "Daily", "s1": "Every hour", "s2": "Daily", "s3": "Every hour", "s4": "Daily", "s5": "Daily", "s6": "Daily", "r1": "Daily", "r2": "Daily", "r3": "Daily", "l7": "Daily"};const SURE={Sure:3,Likely:2,'Needs a test':1};
+const $=s=>document.querySelector(s);let team='web',sel=null;
+function esc(t){return String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+const TEAL='#00A4BD',CORAL='#FF5C35',PAL=['#00A4BD','#FF7A59','#7FD1DE','#CBD6E2'];
+function spark(id){let h=0;for(const c of id)h=(h*31+c.charCodeAt(0))%997;const n=14,W=240,H=38;let p=[];for(let i=0;i<n;i++)p.push(20+((h*(i+5))%18)+i*1.6);const mx=Math.max(...p),mn=Math.min(...p);
+ const pts=p.map((v,i)=>`${(i*W/(n-1)).toFixed(1)},${(H-4-(v-mn)/(mx-mn||1)*(H-10)).toFixed(1)}`).join(' ');
+ return `<svg viewBox="0 0 ${W} ${H}" width="100%" height="${H}" preserveAspectRatio="none" aria-hidden="true"><polyline points="0,${H} ${pts} ${W},${H}" fill="rgba(0,164,189,.10)" stroke="none"/><polyline points="${pts}" fill="none" stroke="${TEAL}" stroke-width="2"/></svg>`;}
+function body(m){const d=SAMPLE[m[0]];const k=d[0];
+ const head=d[1]?`<div class="kv">${d[1]}${d[2]?`<em class="${/^[−-]/.test(d[2])?'kdown':(d[2]==='live'?'klive':'kup')}">${d[2]}</em>`:''}</div><div class="ks">${d[3]}</div>`:'';
+ if(k==='kpi')return head+`<div class="ch">${spark(m[0])}</div>`;
+ if(k==='donut'){const a=d[4][2],r=30,c=2*Math.PI*r;return `<div class="dn2"><svg viewBox="0 0 80 80" width="80" height="80" aria-hidden="true"><circle cx="40" cy="40" r="${r}" fill="none" stroke="#CBD6E2" stroke-width="12"/><circle cx="40" cy="40" r="${r}" fill="none" stroke="${TEAL}" stroke-width="12" stroke-dasharray="${c*a/100} ${c}" transform="rotate(-90 40 40)"/></svg><div><div class="kv">${d[1]}</div><div class="ks">${d[3]}</div><div class="lg"><span><i style="background:${TEAL}"></i>${d[4][0]}</span><span><i style="background:#CBD6E2"></i>${d[4][1]}</span></div></div></div>`;}
+ if(k==='bars'){const vals=d[4].map(x=>typeof x[1]==='number'?x[1]:parseFloat(String(x[1]).replace(/[^0-9.]/g,'')));const mx=Math.max(...vals);
+  return head+`<div class="hb">${d[4].map((x,i)=>`<div><span>${x[0]}</span><i><b style="width:${vals[i]/mx*100}%"></b></i><em>${typeof x[1]==='number'?x[1].toLocaleString():x[1]}</em></div>`).join('')}</div>`;}
+ if(k==='stack'){let o='';const n=10,W=300,H=52;for(let i=0;i<n;i++){let y=H;d[4].forEach((s,j)=>{const hh=s[1]*0.55+((i*3+j*7)%5);y-=hh;o+=`<rect x="${i*W/n+3}" y="${y.toFixed(1)}" width="${W/n-6}" height="${hh.toFixed(1)}" fill="${PAL[j]}"/>`;});}
+  return head+`<svg viewBox="0 0 ${W} ${H}" width="100%" height="${H}" preserveAspectRatio="none" aria-hidden="true">${o}</svg><div class="lg">${d[4].map((s,j)=>`<span><i style="background:${PAL[j]}"></i>${s[0]}</span>`).join('')}</div>`;}
+ if(k==='table')return `<div class="tb2">${d[4].map(x=>`<div><span>${x[0]}</span><b>${x[1]}</b></div>`).join('')}</div>`;
+ if(k==='funnel'){const mx=d[4][0][1];return `<div class="hb fn">${d[4].map((x,i)=>`<div><span>${x[0]}</span><i><b style="width:${Math.max(4,x[1]/mx*100)}%;background:${i===d[4].length-1?CORAL:TEAL}"></b></i><em>${x[1].toLocaleString()}</em></div>`).join('')}</div>`;}
+ return '';}
+const SPAN={kpi:1,donut:1,bars:1,stack:1,table:1,funnel:1};
+function render(){
+ $('#tabs').innerHTML=TEAMS.map(t=>`<button class="tab ${team===t[0]?'on':''}" role="tab" aria-selected="${team===t[0]}" data-t="${t[0]}">${t[1]}</button>`).join('');
+ const t=TEAMS.find(x=>x[0]===team);let ms=METS.filter(m=>m[1]===team);
+ ms=ms.slice().sort((a,b)=>SPAN[SAMPLE[a[0]][0]]-SPAN[SAMPLE[b[0]][0]]);
+ const m=METS.find(x=>x[0]===sel);
+ const side=m?(()=>{return `<div class="sd-t">${esc(m[2])}</div>
+   <div class="sd-f"><i>What it tells you</i><b>${esc(TELL[m[0]]||'')}</b></div>
+   <div class="sd-f"><i>Comes from</i><b>${esc(m[5])}</b></div>
+   <div class="sd-f"><i>How we set it up</i><b>${esc(m[6])}</b></div>
+   <div class="sd-f"><i>Updates</i><b>${UPD[m[0]]||'Daily'}${m[8]==='HubSpot'?'':' · opens in '+esc(m[8].replace(', linked',''))}</b></div>`;})()
+  :`<div class="sd-empty"><b>Click any report</b><span>to see where its data comes from and how we set it up.</span><div class="sd-lg"><span><i style="background:#F5A623"></i>After our setup</span><span><i style="background:#A3B4C6"></i>Opens in GA4 or Heap</span><span><i style="background:transparent;border:1.5px solid rgba(255,255,255,.5)"></i>Works straight away</span></div></div>`;
+ $('#hs').innerHTML=`<div class="hs-bar"><i></i>${t[1]} dashboard<span>Last 30 days · sample numbers</span></div>
+ <div class="hs-grid">${ms.map(m=>`<button class="hs-tile ${sel===m[0]?'sel':''}" style="grid-column:span ${SPAN[SAMPLE[m[0]][0]]}" data-m="${m[0]}"><div class="tt">${esc(m[2])}${m[4]!=='Ready'?`<span class="dot ${m[4]==='Linked'?'g':'a'}" title="${m[4]}"></span>`:''}</div>${body(m)}</button>`).join('')}</div>`;
+ $('#side').innerHTML=side;
+ $('#det').hidden=true;$('#hint').hidden=true;}
+document.addEventListener('click',e=>{const tb=e.target.closest('[data-t]');if(tb){team=tb.dataset.t;sel=null;render();return;}
+ const m=e.target.closest('[data-m]');if(m){sel=sel===m.dataset.m?null:m.dataset.m;render();}});
+render();
+</script>
+</body>
+</html>
