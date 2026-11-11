@@ -350,6 +350,93 @@ p.body{max-width:760px}
 .nd li b{color:var(--text);font-weight:600}
 @media (max-width:900px){.need2{grid-template-columns:1fr}.nd li{grid-template-columns:1fr;gap:2px}}
 </style>
+<style>
+.work4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.w4c{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:20px 22px}
+.w4c.tot{border-color:var(--accent-border);background:linear-gradient(160deg,rgba(139,107,247,.14),var(--bg2) 70%)}
+.w4n{font-size:40px;font-weight:600;letter-spacing:-.02em;line-height:1;color:var(--text)}
+.w4c b{display:block;margin-top:10px;font-size:16px;font-weight:600;color:var(--text)}
+.w4c span{display:block;margin-top:4px;font-size:13.5px;color:var(--text2);line-height:1.45}
+.work-line{margin-top:12px;font-size:13.5px;color:var(--text2);line-height:1.6}
+.work-line span{color:var(--text);font-weight:600}
+@media (max-width:900px){.work4{grid-template-columns:1fr 1fr}}
+</style>
+<style>
+.hsrow .hs{display:flex;flex-direction:column}
+.hsrow .hs .hs-grid{flex:1;grid-auto-rows:1fr}
+.hsrow .hs .hs-tile{height:100%}
+</style>
+<style>
+.fixedbar b small{font-size:.62em;font-weight:500;color:var(--text2);margin-left:2px}
+.work-chips{margin-top:14px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.work-chips b{font-size:14px;font-weight:600;color:var(--text);margin-right:6px}
+.work-chips span{font-size:13px;color:var(--text2);border:1px solid var(--border2);border-radius:999px;padding:5px 12px;background:var(--bg2)}
+.hs-grid .hs-tile.wide{grid-column:1/-1!important}
+.st li{min-height:76px;align-items:start}
+.nd li{min-height:74px;align-items:start}
+.nd li b,.st li b{white-space:nowrap}
+.nd h4,.st h3{min-height:0}
+</style>
+<style>
+.work-grid{margin-top:14px;display:grid;grid-template-columns:150px 1fr;gap:14px;align-items:start}
+.wg-l{font-size:14px;font-weight:600;color:var(--text);padding-top:9px}
+.wg-g{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.wg-g span{font-size:13px;color:var(--text2);border:1px solid var(--border2);border-radius:10px;padding:8px 12px;background:var(--bg2);display:flex;align-items:center;gap:8px}
+.wg-g span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--amber);flex:none}
+@media (max-width:900px){.work-grid{grid-template-columns:1fr}.wg-g{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.wg-g{grid-template-columns:1fr}}
+</style>
+<style>
+.work-grid{grid-template-columns:1fr;gap:10px;margin-top:16px}
+.wg-l{padding-top:0;font-size:13px;font-weight:500;color:var(--text2);letter-spacing:.02em}
+.wg-g span{padding:10px 14px;white-space:nowrap}
+</style>
+<style>.fix{grid-auto-rows:1fr}</style>
+<style>
+button.w4c{all:unset;box-sizing:border-box;cursor:pointer;background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:20px 22px;display:block;transition:border-color .2s,transform .2s}
+button.w4c.tot{border-color:var(--accent-border);background:linear-gradient(160deg,rgba(139,107,247,.14),var(--bg2) 70%)}
+button.w4c:hover{border-color:var(--accent-border);transform:translateY(-2px)}
+button.w4c.on{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+button.w4c:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.w4h{display:block;margin-top:12px;font-style:normal;font-size:12.5px;color:var(--accent-lt)}
+button.w4c.on .w4h{color:var(--text)}
+.catlist{margin-top:14px;border:1px solid var(--accent-border);border-radius:16px;background:var(--bg2);padding:20px 22px}
+.catlist .ch{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+.catlist .ch b{font-size:16px;font-weight:600;color:var(--text)}
+.catlist .ch span{font-size:13px;color:var(--text2)}
+.catlist .cg{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.catlist .tm{border:1px solid var(--border);border-radius:12px;padding:14px 16px}
+.catlist .tm h5{font-size:13px;font-weight:600;color:var(--text2);margin-bottom:6px;display:flex;justify-content:space-between}
+.catlist .tm li{list-style:none;font-size:14px;color:var(--text);padding:6px 0;border-top:1px solid var(--border);display:flex;align-items:center;gap:9px}
+.catlist .tm li:first-of-type{border-top:none}
+.catlist .tm li i{width:8px;height:8px;border-radius:50%;flex:none}
+@media (max-width:900px){.catlist .cg{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.catlist .cg{grid-template-columns:1fr}}
+</style>
+<style>.catlist .later{margin-top:14px;font-size:13.5px;color:var(--text2)}.catlist .later b{color:var(--text);font-weight:600}</style>
+<style>
+.price-why{margin-top:14px;padding:16px 18px;border-radius:12px;border:1px solid rgba(232,162,61,0.35);background:var(--amber-dim);font-size:13px;color:var(--text2);line-height:1.65}
+.price-why .pw-h{font-size:10.5px;font-family:'DM Mono',monospace;color:var(--amber);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:8px}
+.price-why b{color:var(--text)}
+.pw-tw{overflow-x:auto;margin-top:14px;border-radius:10px;border:1px solid rgba(232,162,61,0.22)}
+.pw-t{width:100%;border-collapse:collapse;font-size:12.5px;line-height:1.5}
+.pw-t th,.pw-t td{text-align:left;padding:10px 12px;border-bottom:1px solid rgba(232,162,61,0.15);vertical-align:top}
+.pw-t tr:last-child td{border-bottom:none}
+.pw-t th{color:var(--text);font-weight:600;background:rgba(232,162,61,0.08)}
+.pw-t td:first-child{color:var(--text);font-weight:500;width:22%}
+.pw-t td{color:var(--text2)}
+.pw-t td:nth-child(2),.pw-t th:nth-child(2),.pw-t td:nth-child(3),.pw-t th:nth-child(3){width:39%}
+.pw-bl{margin-top:14px;padding:12px 14px;border-left:3px solid var(--amber);background:rgba(232,162,61,0.1);border-radius:0 8px 8px 0;color:var(--text);font-weight:500}
+@media (max-width:640px){
+ .pw-t thead{display:none}
+ .pw-t,.pw-t tbody,.pw-t tr,.pw-t td{display:block;width:100%!important}
+ .pw-t tr{border-bottom:1px solid rgba(232,162,61,0.15);padding:6px 0}
+ .pw-t tr:last-child{border-bottom:none}
+ .pw-t td{border-bottom:none;padding:4px 12px}
+ .pw-t td:first-child{padding-top:8px}
+ .pw-t td[data-l]::before{content:attr(data-l);display:block;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.6px;color:var(--amber);text-transform:uppercase;margin-bottom:2px}
+}
+</style>
 </head>
 <body>
   <div class="topbar">
@@ -362,28 +449,31 @@ p.body{max-width:760px}
     <p class="body">With your site faster and your SEO in place, the next step is one trusted view of your numbers. We’ll set up six HubSpot dashboards, one for each team, on the plan you already have, so everyone works from the same figures. A custom dashboard can follow later as phase 2, if needed.</p>
     <div class="fixedbar">
       <div><i>Already fixed · Website speed</i><b><s>50.5</s> → <em>74.5</em></b><span>Average mobile score, all 494 pages</span></div>
-      <div><i>Already fixed · HubSpot pages</i><b><em>243</em> checked</b><span>Broken pages and links fixed</span></div>
+      <div><i>Already fixed · HubSpot pages</i><b><em>112</em> <small>fixes</small></b><span>Broken pages and links, across 243 pages checked</span></div>
       <div><i>Already fixed · SEO and AI search</i><b><s>491</s> → <em>0</em></b><span>Pages with wrong canonical tags</span></div>
     </div>
 
     <h2>Your setup today</h2>
+    <p class="body" style="margin-bottom:18px">Four things need fixing first. Each one makes your HubSpot and Salesforce data more accurate on its own, with or without dashboards.</p>
     <div class="fix">
-      <div class="fx"><div class="lab">Calls and meetings</div><div class="now">Sales calls and demo meetings are in Salesforce. Their sync into HubSpot is switched off.</div><div class="rule"></div><div class="do">Switch it on and bring in past records.</div></div>
-      <div class="fx"><div class="lab">Sign-up app</div><div class="now">HubSpot isn’t on the sign-up app, so sign-ups arrive without a source.</div><div class="rule"></div><div class="do">Add HubSpot to the sign-up app.</div></div>
+      <div class="fx"><div class="lab">Calls and meetings</div><div class="now">Calls and demo meetings sync is switched off. 113 sync errors affect about 5,500 records, and Salesforce was disconnected from 24 to 28 Sep.</div><div class="rule"></div><div class="do">Clear the sync errors, switch it on and bring in past records.</div></div>
+      <div class="fx"><div class="lab">Sign-up app</div><div class="now">Sign-ups reach HubSpot without their source, and 10 of the 11 application steps have recorded nothing for 90 days.</div><div class="rule"></div><div class="do">Repair the step tracking, and pass each sign-up’s source.</div></div>
       <div class="fx"><div class="lab">Website visits</div><div class="now">HubSpot records only the first page of each visit, and counts test sites too.</div><div class="rule"></div><div class="do">Record every page, on live sites only.</div></div>
       <div class="fx"><div class="lab">Key events</div><div class="now">Only 1 of 12 key events in GA4 is receiving data.</div><div class="rule"></div><div class="do">Repair the events.</div></div>
     </div>
     <div class="have"><b>Already in HubSpot, used as is</b><span>Deals and revenue</span><span>Revenue attribution</span><span>Google Ads</span><span>Meta Ads</span><span>LinkedIn Ads</span><span>Live chat</span></div>
-    <div class="note" style="margin-top:14px"><b>Why HubSpot for phase 1:</b> it already holds your leads, deals, revenue and ad data, which GA4 can’t show. GA4 tracking is fixed as part of step 1, and GA4 reports are linked where they fit better.</div>
+    <div class="note" style="margin-top:14px"><b>Why HubSpot for phase 1:</b> it already holds your leads, deals, revenue and ad data, so all 33 metrics can be live in 3 weeks, where a custom dashboard would take about 3 months. GA4 tracking is fixed in step 1, and GA4 reports are linked where they fit better.</div>
 
     <h2>Metrics agreed with your team</h2>
-    <div class="heads">
-      <div class="head"><div class="h-n">33</div><div class="h-l">Metrics agreed, across 6 teams</div></div>
-      <div class="head"><div class="h-n green">29</div><div class="h-l">Shown inside HubSpot dashboards</div></div>
-      <div class="head"><div class="h-n amber">4</div><div class="h-l">In GA4 or Heap, linked from the dashboard</div></div>
+    <div class="work4">
+      <button class="w4c" data-cat="Ready" aria-expanded="false"><div class="w4n" style="color:var(--green)">10</div><b>Ready</b><span>Works as soon as the dashboards are built.</span><em class="w4h">See which metrics</em></button>
+      <button class="w4c" data-cat="After setup" aria-expanded="false"><div class="w4n" style="color:var(--amber)">19</div><b>After setup</b><span>We fix, connect or repair the tracking first.</span><em class="w4h">See which metrics</em></button>
+      <button class="w4c" data-cat="Linked" aria-expanded="false"><div class="w4n" style="color:#A3B4C6">4</div><b>Linked</b><span>Built in GA4 or Heap, one click from the dashboard.</span><em class="w4h">See which metrics</em></button>
+      <button class="w4c tot" data-cat="all" aria-expanded="false"><div class="w4n">33</div><b>Total</b><span>Metrics agreed with your team, across 6 dashboards.</span><em class="w4h">See which metrics</em></button>
     </div>
-    <details class="dd2"><summary><span>See all 33 metrics by team</span><i>+</i></summary>
-    <div class="agreed"><div class="ag"><h4>Website<span>7</span></h4><ul><li>Weekly visits by source</li><li>New vs returning visits</li><li>Top pages</li><li>Top 10 user pathways</li><li>Top clicks: Get started, Log in, Book a demo</li><li>Chat opened and conversations started</li><li>Leads created by source</li></ul></div><div class="ag"><h4>Leadership<span>7</span></h4><ul><li>Revenue won from the website</li><li>Real marketing leads</li><li>Demo meetings booked</li><li>Cost per lead</li><li>Cost per demo meeting</li><li>Marketing revenue by lead source</li><li>Cost per opportunity</li></ul></div><div class="ag"><h4>Performance marketing<span>6</span></h4><ul><li>Leads by channel</li><li>Top 5 pages: engagement and clicks</li><li>Book-a-call visits and form fills</li><li>Homepage user journey</li><li>Visitors right now</li><li>Visits by channel, prospects only</li></ul></div><div class="ag"><h4>Content & search<span>4</span></h4><ul><li>Desktop vs phone</li><li>Where people drop off</li><li>Marketing email results</li><li>Engaged visits</li></ul></div><div class="ag"><h4>Sales<span>6</span></h4><ul><li>Demo meetings held</li><li>Lead → meeting → deal → won</li><li>Contacts created</li><li>Leads not called within 24 hours</li><li>Calls per new lead</li><li>Calls placed and voicemail rate</li></ul></div><div class="ag"><h4>Product<span>3</span></h4><ul><li>Online application funnel</li><li>Prospects vs customers</li><li>Customer logins</li></ul></div></div><div style="padding:0 20px 18px;font-size:13.5px;color:var(--text2)"><b style="color:var(--text)">Later phase:</b> account use (which product features customers use), as agreed.</div></details>
+    <div class="catlist" id="catlist" hidden></div>
+    <div class="work-grid"><div class="wg-l">Behind the 19</div><div class="wg-g"><span>Tracking fixed on 2 sites</span><span>Salesforce calls and meetings synced</span><span>Sync errors cleared</span><span>Application funnel repaired</span><span>Lead, call and meeting workflows</span><span>Click and chat events</span></div></div>
+    
 
     <h2>How each metric shows in HubSpot</h2>
     <div class="tabs" id="tabs" role="tablist" style="margin-top:6px"></div>
@@ -394,49 +484,41 @@ p.body{max-width:760px}
     <h2>What we do</h2>
     <div class="steps2">
       <div class="st"><div class="n">Step 1</div><h3>Fix the data</h3><ul>
-        <li><b>Website</b><span>Every page recorded, live sites only, key button clicks tracked.</span></li>
-        <li><b>Sign-up app</b><span>HubSpot added, each sign-up step counted.</span></li>
-        <li><b>Calls and meetings</b><span>Brought in from Salesforce, with results and past records.</span></li></ul></div>
+        <li><b>Website</b><span>Every page recorded on live sites only, with key clicks and GA4 events tracked.</span></li>
+        <li><b>Sign-up app</b><span>Step tracking repaired, and every sign-up keeps its source.</span></li>
+        <li><b>Calls and meetings</b><span>Sync errors cleared, then calls and meetings brought in with past records.</span></li></ul></div>
       <div class="st"><div class="n">Step 2</div><h3>Build the dashboards</h3><ul>
-        <li><b>Six dashboards</b><span>One per team, in HubSpot.</span></li>
-        <li><b>GA4 and Heap</b><span>Saved reports, linked from HubSpot.</span></li>
+        <li><b>Six dashboards</b><span>One per team in HubSpot, shared with the right people.</span></li>
+        <li><b>GA4 and Heap</b><span>Saved reports for the 4 linked metrics, one click from HubSpot.</span></li>
         <li><b>Hand-over</b><span>Numbers checked against each tool, and a walkthrough with your team.</span></li></ul></div>
     </div>
 
     <h2>Timeline</h2>
     <div class="mt mt3">
-      <div class="mrow" style="grid-template-columns:160px 1fr"><div class="mc lbl">Weeks 1–2</div><div class="mc" style="font-family:inherit">Fix the data: website, sign-up app, and calls and meetings from Salesforce</div></div>
-      <div class="mrow" style="grid-template-columns:160px 1fr"><div class="mc lbl">Weeks 3–4</div><div class="mc" style="font-family:inherit">Build the six dashboards and GA4 and Heap links, then hand over</div></div>
+      <div class="mrow" style="grid-template-columns:160px 1fr"><div class="mc lbl">Week 1</div><div class="mc" style="font-family:inherit">Fix the tracking: website, sign-up app, GA4 key events, and clicks and chat</div></div>
+      <div class="mrow" style="grid-template-columns:160px 1fr"><div class="mc lbl">Week 2</div><div class="mc" style="font-family:inherit">Connect Salesforce calls and meetings, set up lead workflows, and link Heap</div></div>
+      <div class="mrow" style="grid-template-columns:160px 1fr"><div class="mc lbl">Week 3</div><div class="mc" style="font-family:inherit">Build the six dashboards, check every number, and hand over to your team</div></div>
     </div>
 
     <h2>What we need from you</h2>
     <p class="body">Everything in one go, so we can start without back-and-forth. We prepare every change; your team reviews and publishes.</p>
-    <div class="need2">
-      <div class="nd"><h4>Access</h4><ul>
-        <li><b>HubSpot</b><span>Permission to edit reports and dashboards, properties, workflows, tracking settings, custom events and the Salesforce connection settings.</span></li>
-        <li><b>Salesforce</b><span>A read-only user, to check the call and meeting fields we bring into HubSpot.</span></li>
-        <li><b>LeanData</b><span>View access to BookIt, or confirmation that its meetings are readable in Salesforce.</span></li>
-        <li><b>Google Tag Manager</b><span>Edit access. We set up the changes in a workspace, and your team reviews and publishes them.</span></li>
-        <li><b>GA4</b><span>Editor access, to repair the key events and save the linked reports.</span></li>
-        <li><b>Heap</b><span>View access, plus the application funnel view your team uses today.</span></li>
-        <li><b>Semrush</b><span>View access, to track the SEO and AI visibility results from phase 3.</span></li>
-      </ul></div>
-      <div class="nd"><h4>Decisions and approvals</h4><ul>
-        <li><b>Real leads</b><span>Which forms count as real marketing leads.</span></li>
-        <li><b>Meetings held</b><span>Which Salesforce field marks a demo meeting as held (we found Meeting No Show and Meeting Attendance).</span></li>
-        <li><b>Calls and meetings sync</b><span>Approval to switch on the Salesforce calls and meetings sync into HubSpot, and to import past records.</span></li>
-        <li><b>Online application</b><span>A developer contact, in case a sign-up step needs a small code change for tracking.</span></li>
-        <li><b>Dashboard viewers</b><span>Who should see each of the six dashboards.</span></li>
-        <li><b>Top 5 pages</b><span>We’ll use your five most-visited pages unless you prefer specific ones.</span></li>
-      </ul></div>
-    </div>
+    <div class="need2"><div class="nd"><h4>Access</h4><ul><li><b>HubSpot</b><span>Edit access to reports, workflows, tracking and the Salesforce connection.</span></li><li><b>Salesforce</b><span>A read-only user, and your admin’s help with a few permission fixes for the sync errors.</span></li><li><b>LeanData</b><span>View access to BookIt, and confirmation that it saves meetings as Salesforce events.</span></li><li><b>Google Tag Manager</b><span>Edit access. We prepare changes in a workspace; your team reviews and publishes.</span></li><li><b>GA4</b><span>Editor access, to repair the key events and save the linked reports.</span></li><li><b>Heap</b><span>View access, your application funnel view, and approval to connect it to HubSpot.</span></li><li><b>Semrush</b><span>View access, to track SEO and AI visibility results from phase 3.</span></li></ul></div><div class="nd"><h4>Decisions and approvals</h4><ul><li><b>Real leads</b><span>Which forms count as real marketing leads.</span></li><li><b>Meetings held</b><span>Which Salesforce field marks a meeting as held (No Show or Attendance).</span></li><li><b>Sync sign-off</b><span>Approval to switch on the calls and meetings sync, clear errors and import history.</span></li><li><b>Online application</b><span>A small change from your developer, to our spec, so sign-ups keep their source.</span></li><li><b>Dashboard viewers</b><span>Who should see each of the six dashboards.</span></li><li><b>Top 5 pages</b><span>Your five most-visited pages, unless you prefer specific ones.</span></li><li><b>Attribution</b><span>One agreed attribution model for ad costs and revenue.</span></li></ul></div></div>
 
     <h2>Commercials</h2>
     <div class="track">
       <div class="track-h"><div class="t-name">HubSpot Dashboards · Phase 1</div><div class="t-tag">33 metrics · 6 dashboards</div></div>
       <div class="price-grid two">
-        <div class="price-box"><div class="p-l">One-time</div><div class="p-v">$X,XXX</div><div class="p-d">Steps 1 and 2</div></div>
-        <div class="price-box"><div class="p-l">Timeline</div><div class="p-v">4 <span>weeks</span></div><div class="p-d">From kickoff</div></div>
+        <div class="price-box"><div class="p-l">One-time</div><div class="p-v">$6,500</div><div class="p-d">Steps 1 and 2</div></div>
+        <div class="price-box"><div class="p-l">Timeline</div><div class="p-v">3 <span>weeks</span></div><div class="p-d">From kickoff</div></div>
+      </div>
+      <div class="price-why">
+        <div class="pw-h">Why $6,500</div>
+        The 33 metrics come from <b>4 systems</b>: HubSpot, Salesforce, GA4 and Heap. <b>19 of them need tracking fixed, connected or repaired first</b>, so most of the work happens before a single chart is built.
+        <div class="pw-tw"><table class="pw-t">
+          <thead><tr><th></th><th>Today</th><th>After this project</th></tr></thead>
+          <tbody><tr><td>Website visits</td><td data-l="Today">First page of each visit only, test sites included</td><td data-l="After this project">Every page counted, on live sites only</td></tr><tr><td>Calls and meetings</td><td data-l="Today">In Salesforce only; the HubSpot sync is off</td><td data-l="After this project">In HubSpot, with results, outcomes and history</td></tr><tr><td>Salesforce sync</td><td data-l="Today">113 errors affecting about 5,500 records</td><td data-l="After this project">Errors cleared, so leads and revenue add up</td></tr><tr><td>Online application</td><td data-l="Today">10 of 11 steps silent for 90 days; sign-ups lose their source</td><td data-l="After this project">Every step tracked, and every sign-up keeps its source</td></tr><tr><td>Dashboards</td><td data-l="Today">33 metrics spread across 4 tools</td><td data-l="After this project">6 HubSpot dashboards, one for each team</td></tr></tbody>
+        </table></div>
+        <div class="pw-bl">Most of the work is fixing the data, not drawing the charts. That is what makes the numbers trustworthy, and it is live in 3 weeks instead of about 3 months for a custom build.</div>
       </div>
     </div>
     
@@ -448,17 +530,19 @@ p.body{max-width:760px}
         <li><b>Salesforce:</b> call and meeting reports rely on reps recording results in Salesforce.</li>
         <li><b>New tracking:</b> clicks and sign-up steps count from go-live; past calls and meetings are imported once.</li>
         <li><b>Numbers:</b> HubSpot, GA4 and Heap count visits differently, so figures will be close, not identical.</li>
+        <li><b>Ad data:</b> ad results in HubSpot can take up to 48 hours to update.</li>
+        <li><b>Revenue:</b> revenue reports rely on deals being linked to contacts in Salesforce.</li>
         <li><b>Phase 2:</b> a custom dashboard, if needed later, is scoped and quoted separately.</li>
-        <li><b>Timeline:</b> delays in approvals move it by the same amount.</li>
+        <li><b>Timeline:</b> 3 weeks, working Monday to Saturday. Delays in approvals move it by the same amount.</li>
       </ol>
     </div>
 
     <h2>Next steps</h2>
     <div class="next">
       <div class="nx"><i>1</i><b>Approve</b><span>Scope and fee.</span></div>
-      <div class="nx"><i>2</i><b>Kickoff</b><span>Access and decisions, as listed above.</span></div>
+      <div class="nx"><i>2</i><b>Kickoff</b><span>Access and decisions above.</span></div>
       <div class="nx"><i>3</i><b>Weeks 1–2</b><span>We fix the data.</span></div>
-      <div class="nx"><i>4</i><b>Weeks 3–4</b><span>Dashboards live.</span></div>
+      <div class="nx"><i>4</i><b>Week 3</b><span>Dashboards live.</span></div>
     </div>
 
     <div class="foot">
@@ -466,8 +550,8 @@ p.body{max-width:760px}
       <div><a href="mailto:nj@troopod.io">nj@troopod.io</a></div>
     </div>
   </div>
-<script>const TEAMS=[["web", "Website", "How people find and use the site"], ["lead", "Leadership", "Is the website bringing in business?"], ["perf", "Performance marketing", "Which ads and channels work"], ["cont", "Content & search", "Which pages work, and where people leave"], ["sales", "Sales", "How fast and how well leads are followed up"], ["prod", "Product", "How people sign up, and how customers use Vestwell"]];const METS=[["w1", "web", "Weekly visits by source", "stack", "Ready", "HubSpot website reports", "We fix how HubSpot counts page visits, so every page is recorded.", "Sure", "HubSpot"], ["w2", "web", "New vs returning visits", "donut", "Ready", "HubSpot website reports", "Same fix as above.", "Likely", "HubSpot"], ["w3", "web", "Top pages", "list", "Ready", "HubSpot website reports", "Same fix as above.", "Sure", "HubSpot"], ["w4", "web", "Top 10 user pathways", "paths", "After setup", "HubSpot journey report (your Enterprise plan)", "We set up the report once page visits are recorded properly.", "Likely", "HubSpot"], ["w5", "web", "Top clicks: Get started, Log in, Book a demo", "bars", "After setup", "HubSpot click tracking", "We add a small tag to track these three buttons.", "Likely", "HubSpot"], ["w6", "web", "Chat opened and conversations started", "line", "After setup", "HubSpot chat", "Conversations are tracked already. We add tracking for when the chat is opened.", "Likely", "HubSpot"], ["w7", "web", "Leads created by source", "bars", "After setup", "HubSpot contacts", "We add HubSpot to the sign-up app, so every sign-up keeps its source.", "Likely", "HubSpot"], ["l1", "lead", "Revenue won from the website", "num", "Ready", "Salesforce deals, already synced to HubSpot", "Nothing new. Deals already sync both ways.", "Likely", "HubSpot"], ["l2", "lead", "Real marketing leads", "line", "After setup", "HubSpot contacts", "We tag leads from marketing forms only, leaving out customer forms.", "Likely", "HubSpot"], ["l3", "lead", "Demo meetings booked", "line", "After setup", "Salesforce meetings (LeanData)", "We switch on the Salesforce meetings sync, and bring in past meetings once.", "Likely", "HubSpot"], ["l4", "lead", "Cost per lead", "num", "Ready", "Google, Meta and LinkedIn ads, already in HubSpot", "Nothing new. Your ad accounts are already connected.", "Sure", "HubSpot"], ["l5", "lead", "Cost per demo meeting", "num", "After setup", "Ads + Salesforce meetings", "Works once demo meetings come into HubSpot.", "Likely", "HubSpot"], ["l6", "lead", "Marketing revenue by lead source", "bars", "Ready", "HubSpot attribution (your Enterprise plan)", "Nothing new. The report is already available.", "Likely", "HubSpot"], ["l7", "lead", "Cost per opportunity", "kpi", "After setup", "Ads (already in HubSpot) + opportunities from Salesforce", "Works once opportunities sync from Salesforce, which is already connected.", "Likely", "HubSpot"], ["p1", "perf", "Leads by channel", "bars", "After setup", "HubSpot contacts", "Same as leads by source.", "Likely", "HubSpot"], ["p2", "perf", "Top 5 pages: engagement and clicks", "list", "After setup", "HubSpot website reports and click tracking", "We pick your five most-visited pages and show how people engage and where they click.", "Likely", "HubSpot"], ["p3", "perf", "Book-a-call visits and form fills", "num", "Ready", "HubSpot pages and forms", "Nothing new.", "Sure", "HubSpot"], ["p4", "perf", "Homepage user journey", "paths", "After setup", "HubSpot journey report", "Same as user pathways, starting at the homepage.", "Likely", "HubSpot"], ["p5", "perf", "Visitors right now", "live", "Linked", "GA4 live view", "A link from the dashboard. HubSpot has no live view.", "Sure", "GA4, linked"], ["p6", "perf", "Visits by channel, prospects only", "stack", "Linked", "GA4", "A saved GA4 report that leaves out customers, linked from the dashboard.", "Likely", "GA4, linked"], ["c1", "cont", "Desktop vs phone", "donut", "Ready", "HubSpot website reports", "Nothing new.", "Sure", "HubSpot"], ["c2", "cont", "Where people drop off", "funnel", "After setup", "HubSpot journey report", "We agree the key steps with you, then set up the report.", "Likely", "HubSpot"], ["c3", "cont", "Marketing email results", "num", "Ready", "HubSpot email", "Nothing new.", "Sure", "HubSpot"], ["c4", "cont", "Engaged visits", "line", "Linked", "GA4", "A saved GA4 report, linked from the dashboard.", "Sure", "GA4, linked"], ["s1", "sales", "Demo meetings held", "num", "After setup", "Salesforce meetings", "We bring in whether each meeting happened, from Salesforce.", "Needs a test", "HubSpot"], ["s2", "sales", "Lead → meeting → deal → won", "funnel", "After setup", "HubSpot + Salesforce", "We mark each stage as it happens, so the whole journey shows in one report.", "Likely", "HubSpot"], ["s3", "sales", "Contacts created", "line", "Ready", "HubSpot contacts", "Nothing new.", "Sure", "HubSpot"], ["s4", "sales", "Leads not called within 24 hours", "num", "After setup", "Salesforce calls (Salesloft, Aircall)", "We switch on the Salesforce calls sync and time the first call.", "Likely", "HubSpot"], ["s5", "sales", "Calls per new lead", "num", "After setup", "Salesforce calls", "Works once calls come into HubSpot.", "Likely", "HubSpot"], ["s6", "sales", "Calls placed and voicemail rate", "donut", "After setup", "Salesforce calls", "We bring in each call’s result from Salesforce.", "Likely", "HubSpot"], ["r1", "prod", "Online application funnel", "funnel", "After setup", "The online application (today seen in Heap and Salesforce)", "We track each step of the application in HubSpot, matching the view your team uses in Heap.", "Likely", "HubSpot"], ["r2", "prod", "Prospects vs customers", "donut", "After setup", "HubSpot", "We mark visitors who log in as customers.", "Likely", "HubSpot"], ["r3", "prod", "Customer logins", "line", "Linked", "Heap", "A Heap board, linked from the dashboard.", "Likely", "Heap, linked"]];const SAMPLE={"w1": ["stack", "12,480", "+8%", "weekly visits", [["Direct", 42], ["Organic", 30], ["Paid", 17], ["Referral", 11]]], "w2": ["donut", "71%", "", "new visitors", ["New", "Returning", 71]], "w3": ["table", "", "", "", [["/", "4,210"], ["/for/small-businesses", "1,380"], ["/able", "1,120"], ["/pricing", "960"]]], "w4": ["table", "", "", "", [["Home › Get started › Sign-up", "1,240"], ["Blog › Book a demo", "310"], ["Pricing › Book a call", "220"]]], "w5": ["bars", "", "", "", [["Get started", 1880], ["Log in", 1410], ["Book a demo", 520]]], "w6": ["kpi", "270", "+12%", "chats opened", null], "w7": ["bars", "216", "+12%", "leads", [["Organic", 78], ["Paid search", 64], ["Direct", 40], ["Referral", 22]]], "l1": ["kpi", "$412K", "+6%", "won this quarter", null], "l2": ["kpi", "171", "+9%", "this month", null], "l3": ["kpi", "48", "+5%", "this month", null], "l4": ["kpi", "$186", "−4%", "per lead", null], "l5": ["kpi", "$910", "−3%", "per meeting", null], "l6": ["bars", "$1.2M", "", "this year", [["Organic", "$480K"], ["Paid", "$360K"], ["Email", "$210K"], ["Referral", "$150K"]]], "p1": ["bars", "216", "", "leads", [["Organic", 78], ["Paid search", 64], ["Direct", 40], ["Referral", 22]]], "p2": ["table", "", "", "", [["/", "4,210 visits · Get started"], ["/for/small-businesses", "1,380 · Book a demo"], ["/able", "1,120 · Log in"], ["/pricing", "960 · Book a call"], ["/401k-plans", "880 · Get started"]]], "p3": ["kpi", "1,240", "+7%", "visits · 96 form fills", null], "p4": ["table", "", "", "", [["Home › Pricing › Book a call", "420"], ["Home › Get started › Sign-up", "380"], ["Home › Log in", "990"]]], "p5": ["kpi", "37", "live", "on the site now", null], "p6": ["stack", "9,860", "+5%", "prospect visits", [["Direct", 35], ["Organic", 38], ["Paid", 18], ["Referral", 9]]], "c1": ["donut", "58%", "", "desktop", ["Desktop", "Phone", 58]], "c2": ["funnel", "", "", "", [["Homepage", 12480], ["Pricing", 3900], ["Book a call", 1240], ["Form sent", 96]]], "c3": ["kpi", "38%", "+2 pts", "open rate", null], "c4": ["kpi", "64%", "+3 pts", "engaged visits", null], "s1": ["kpi", "31", "of 48", "meetings held", null], "s2": ["funnel", "", "", "", [["Lead", 216], ["Meeting", 48], ["Deal", 19], ["Won", 7]]], "s3": ["kpi", "482", "+10%", "this month", null], "s4": ["kpi", "14%", "−3 pts", "of new leads", null], "s5": ["kpi", "2.6", "+0.4", "calls per lead", null], "s6": ["donut", "1,240", "", "calls placed · 37% voicemail", ["Connected", "Voicemail", 63]], "r1": ["funnel", "", "", "", [["Started", 1240], ["Company details", 860], ["Plan picked", 640], ["Submitted", 610]]], "r2": ["donut", "68%", "", "prospects", ["Prospects", "Customers", 68]], "r3": ["kpi", "18,420", "+4%", "logins this month", null], "l7": ["kpi", "$2,450", "−5%", "per opportunity", null]};
-const TELL={"w1": "Where your visitors come from each week.", "w2": "How many visitors are new to Vestwell, and how many come back.", "w3": "Which pages get the most visits.", "w4": "The most common routes people take through the site.", "w5": "How often people click Get started, Log in and Book a demo.", "w6": "How many visitors open the chat and start a conversation.", "w7": "Which sources bring in new leads.", "l1": "How much closed revenue came from website leads.", "l2": "How many genuine marketing leads came in, with customer forms left out.", "l3": "How many demo meetings were booked.", "l4": "What each lead costs across Google, Meta and LinkedIn.", "l5": "What each booked demo meeting costs.", "l6": "Which lead sources created the most revenue.", "p1": "Which channels bring in leads.", "p2": "How people engage with your five busiest pages, and what they click.", "p3": "How many people visit the book-a-call page and fill in the form.", "p4": "Where people go after landing on the homepage.", "p5": "How many people are on the site right now.", "p6": "Where prospects come from, with customers logging in left out.", "c1": "How many visits come from desktop vs phone.", "c2": "At which step people leave on the way to booking a call.", "c3": "How marketing emails perform: opens, clicks and unsubscribes.", "c4": "How many visits are engaged, not just a quick look.", "s1": "How many booked demos actually took place.", "s2": "How many leads become meetings, deals and customers.", "s3": "How many new contacts were added.", "s4": "How many new leads weren’t called within a day.", "s5": "How many calls each new lead gets.", "s6": "How many calls the team makes, and how many go to voicemail.", "r1": "How people move through each step of the online application, and where they drop off.", "r2": "How many visitors are prospects, and how many are existing customers.", "r3": "How often customers log in.", "l7": "What it costs in ads to create each sales opportunity."};const UPD={"w1": "Daily", "w2": "Daily", "w3": "Daily", "w4": "Daily", "w5": "Daily", "w6": "Daily", "w7": "Every hour", "l1": "Every hour", "l2": "Every hour", "l3": "Every hour", "l4": "Daily", "l5": "Daily", "l6": "Daily", "p1": "Every hour", "p2": "Daily", "p3": "Daily", "p4": "Daily", "p5": "Live", "p6": "Daily", "c1": "Daily", "c2": "Daily", "c3": "Daily", "c4": "Daily", "s1": "Every hour", "s2": "Daily", "s3": "Every hour", "s4": "Daily", "s5": "Daily", "s6": "Daily", "r1": "Daily", "r2": "Daily", "r3": "Daily", "l7": "Daily"};const SURE={Sure:3,Likely:2,'Needs a test':1};
+<script>const TEAMS=[["web", "Website", "How people find and use the site"], ["lead", "Leadership", "Is the website bringing in business?"], ["perf", "Performance marketing", "Which ads and channels work"], ["cont", "Content & search", "Which pages work, and where people leave"], ["sales", "Sales", "How fast and how well leads are followed up"], ["prod", "Product", "How people sign up, and how customers use Vestwell"]];const METS=[["w1", "web", "Weekly visits by source", "stack", "Ready", "HubSpot website reports", "We fix how HubSpot counts page visits, so every page is recorded.", "", "HubSpot"], ["w2", "web", "New vs returning visits", "donut", "Ready", "HubSpot website reports", "Nothing new. HubSpot already reports returning visitors.", "", "HubSpot"], ["w3", "web", "Top pages", "list", "Ready", "HubSpot website reports", "The same page-visit fix as weekly visits, with log-in pages left out.", "", "HubSpot"], ["w4", "web", "Top user journeys", "paths", "After setup", "HubSpot journey report (your Enterprise plan)", "We set up journey reports across your key pages, once every page visit is recorded.", "", "HubSpot"], ["w5", "web", "Top clicks: Get started, Log in, Book a demo", "bars", "After setup", "HubSpot click tracking", "We add a small tag to track these three buttons.", "", "HubSpot"], ["w6", "web", "Chat interactions and conversations started", "line", "After setup", "HubSpot chat (your 2 chatbots)", "Conversations are already tracked by your chatbots. We add tracking for chat interactions.", "", "HubSpot"], ["w7", "web", "Leads created by source", "bars", "After setup", "HubSpot contacts", "HubSpot already runs on the sign-up app. With one small change from your developer, every sign-up keeps its source.", "", "HubSpot"], ["l1", "lead", "Revenue won from the website", "num", "Ready", "Salesforce deals, already synced to HubSpot", "Deals already sync. We clear the Salesforce sync errors and check the late-September gap, so totals are complete.", "", "HubSpot"], ["l2", "lead", "Real marketing leads", "line", "After setup", "HubSpot contacts", "We tag leads from marketing forms only, leaving out customer forms.", "", "HubSpot"], ["l3", "lead", "Demo meetings booked", "line", "After setup", "Salesforce meetings (LeanData)", "We switch on the Salesforce meetings sync with LeanData booking details, and bring in past meetings once.", "", "HubSpot"], ["l4", "lead", "Cost per lead", "num", "Ready", "Google, Meta and LinkedIn ads, already in HubSpot", "Nothing new. Your ad accounts are already connected.", "", "HubSpot"], ["l5", "lead", "Cost per demo meeting", "num", "After setup", "Ads (already in HubSpot) + Salesforce meetings", "Shown as ad spend next to the demo meetings it brought in, once meetings come into HubSpot.", "", "HubSpot"], ["l6", "lead", "Marketing revenue by lead source", "bars", "Ready", "HubSpot revenue attribution (your Enterprise plan)", "Already available. We check that deals are linked to contacts, so revenue is credited to the right source.", "", "HubSpot"], ["l7", "lead", "Cost per opportunity", "kpi", "After setup", "Ads (already in HubSpot) + opportunities from Salesforce", "Works once opportunities sync from Salesforce, which is already connected.", "", "HubSpot"], ["p1", "perf", "Leads by channel", "bars", "After setup", "HubSpot contacts", "Same as leads by source: one small change in the sign-up app from your developer.", "", "HubSpot"], ["p2", "perf", "Top 5 pages: engagement and clicks", "list", "After setup", "HubSpot website reports and click tracking", "We pick your five most-visited pages and show how people engage and where they click.", "", "HubSpot"], ["p3", "perf", "Book-a-call visits and form fills", "num", "Ready", "HubSpot pages and forms", "Nothing new.", "", "HubSpot"], ["p4", "perf", "Homepage user journey", "paths", "After setup", "HubSpot journey report", "A journey report starting at the homepage, across your key pages.", "", "HubSpot"], ["p5", "perf", "Visitors right now", "live", "Linked", "GA4 live view", "A link from the dashboard. HubSpot has no live view.", "", "GA4, linked"], ["p6", "perf", "Visits by channel, prospects only", "stack", "Linked", "GA4", "A saved GA4 report that leaves out customers, linked from the dashboard.", "", "GA4, linked"], ["c1", "cont", "Desktop vs phone", "donut", "Ready", "HubSpot website reports", "Nothing new.", "", "HubSpot"], ["c2", "cont", "Where people drop off", "funnel", "After setup", "HubSpot journey report", "We agree the key steps with you, then set up a journey report that shows where people stop.", "", "HubSpot"], ["c3", "cont", "Marketing email results", "num", "Ready", "HubSpot email", "Nothing new.", "", "HubSpot"], ["c4", "cont", "Engaged visits", "line", "Linked", "GA4", "A saved GA4 report, linked from the dashboard.", "", "GA4, linked"], ["s1", "sales", "Demo meetings held", "num", "After setup", "Salesforce meetings", "We bring in whether each meeting happened from Salesforce, and record it as the meeting outcome in HubSpot.", "", "HubSpot"], ["s2", "sales", "Lead → meeting → deal → won", "funnel", "After setup", "HubSpot + Salesforce", "We mark each stage as it happens, so the whole journey shows in one report.", "", "HubSpot"], ["s3", "sales", "Contacts created", "line", "Ready", "HubSpot contacts", "Nothing new.", "", "HubSpot"], ["s4", "sales", "Leads not called within 24 hours", "num", "After setup", "Salesforce calls (Salesloft, Aircall)", "We switch on the Salesforce calls sync, link calls to leads, and time the first call.", "", "HubSpot"], ["s5", "sales", "Calls per new lead", "num", "After setup", "Salesforce calls", "We count the calls on each new lead and show the average.", "", "HubSpot"], ["s6", "sales", "Calls placed and voicemail rate", "donut", "After setup", "Salesforce calls", "We bring in each call’s result from Salesforce and show the share that went to voicemail.", "", "HubSpot"], ["r1", "prod", "Online application funnel", "funnel", "After setup", "The online application (today seen in Heap and Salesforce)", "The step tracking already exists but stopped working. We repair it and match the view your team uses in Heap.", "", "HubSpot"], ["r2", "prod", "Prospects vs customers", "donut", "After setup", "HubSpot", "We mark visitors who log in as customers.", "", "HubSpot"], ["r3", "prod", "Customer logins", "line", "Linked", "Heap", "A Heap board, linked from the dashboard. If your Heap plan allows, an active-customers count also shows in HubSpot.", "", "Heap, linked"]];const SAMPLE={"w1": ["stack", "12,480", "+8%", "weekly visits", [["Direct", 42], ["Organic", 30], ["Paid", 17], ["Referral", 11]]], "w2": ["donut", "71%", "", "new visitors", ["New", "Returning", 71]], "w3": ["table", "", "", "", [["/", "4,210"], ["/for/small-businesses", "1,380"], ["/able", "1,120"], ["/pricing", "960"]]], "w4": ["table", "", "", "", [["Home › Pricing › Book a demo", "1,240"], ["Blog › Get started", "310"], ["Pricing › Book a call", "220"]]], "w5": ["bars", "", "", "", [["Get started", 1880], ["Log in", 1410], ["Book a demo", 520]]], "w6": ["kpi", "270", "+12%", "chat interactions · 96 conversations", null], "w7": ["bars", "216", "+12%", "leads", [["Organic", 78], ["Paid search", 64], ["Direct", 40], ["Referral", 22]]], "l1": ["kpi", "$412K", "+6%", "won this quarter", null], "l2": ["kpi", "171", "+9%", "this month", null], "l3": ["kpi", "48", "+5%", "this month", null], "l4": ["kpi", "$186", "−4%", "per lead", null], "l5": ["kpi", "$43.7K", "", "ad spend · 48 demo meetings", null], "l6": ["bars", "$1.2M", "", "this year", [["Organic", "$480K"], ["Paid", "$360K"], ["Email", "$210K"], ["Referral", "$150K"]]], "p1": ["bars", "216", "", "leads", [["Organic", 78], ["Paid search", 64], ["Direct", 40], ["Referral", 22]]], "p2": ["table", "", "", "", [["/", "4,210 visits · Get started"], ["/for/small-businesses", "1,380 · Book a demo"], ["/able", "1,120 · Log in"], ["/pricing", "960 · Book a call"], ["/401k-plans", "880 · Get started"]]], "p3": ["kpi", "1,240", "+7%", "visits · 96 form fills", null], "p4": ["table", "", "", "", [["Home › Pricing › Book a call", "420"], ["Home › Get started › Sign-up", "380"], ["Home › Log in", "990"]]], "p5": ["kpi", "37", "live", "on the site now", null], "p6": ["stack", "9,860", "+5%", "prospect visits", [["Direct", 35], ["Organic", 38], ["Paid", 18], ["Referral", 9]]], "c1": ["donut", "58%", "", "desktop", ["Desktop", "Phone", 58]], "c2": ["funnel", "", "", "", [["Homepage", 12480], ["Pricing", 3900], ["Book a call", 1240], ["Form sent", 96]]], "c3": ["kpi", "4.2%", "+0.3 pts", "click rate", null], "c4": ["kpi", "64%", "+3 pts", "engaged visits", null], "s1": ["kpi", "31", "of 48", "meetings held", null], "s2": ["funnel", "", "", "", [["Lead", 216], ["Meeting", 48], ["Deal", 19], ["Won", 7]]], "s3": ["kpi", "482", "+10%", "this month", null], "s4": ["kpi", "14%", "−3 pts", "of new leads", null], "s5": ["kpi", "2.6", "+0.4", "calls per lead", null], "s6": ["donut", "1,240", "", "calls placed · 37% voicemail", ["Connected", "Voicemail", 63]], "r1": ["funnel", "", "", "", [["Started", 1240], ["Company details", 860], ["Plan picked", 640], ["Submitted", 610]]], "r2": ["donut", "68%", "", "prospects", ["Prospects", "Customers", 68]], "r3": ["kpi", "18,420", "+4%", "logins this month", null], "l7": ["kpi", "$2,450", "−5%", "per opportunity", null]};
+const TELL={"w1": "Where your visitors come from each week.", "w2": "How many visitors are new to Vestwell, and how many come back.", "w3": "Which pages get the most visits.", "w4": "The most common journeys through your key pages, for example homepage → pricing → book a demo.", "w5": "How often people click Get started, Log in and Book a demo.", "w6": "How many visitors interact with the chat, and how many start a conversation.", "w7": "Which sources bring in new leads.", "l1": "How much closed revenue came from website leads.", "l2": "How many genuine marketing leads came in, with customer forms left out.", "l3": "How many demo meetings were booked.", "l4": "What each lead costs across Google, Meta and LinkedIn.", "l5": "How much ad spend went into each month’s demo meetings, side by side.", "l6": "Which marketing sources and touchpoints created closed revenue.", "p1": "Which channels bring in leads.", "p2": "How people engage with your five busiest pages, and what they click.", "p3": "How many people visit the book-a-call page and fill in the form.", "p4": "Where people go next after landing on the homepage.", "p5": "How many people are on the site right now.", "p6": "Where prospects come from, with customers logging in left out.", "c1": "How many visits come from desktop vs phone.", "c2": "How many people move from one key step to the next, and where they stop.", "c3": "How marketing emails perform, led by clicks, since Apple Mail inflates opens.", "c4": "How many visits are engaged, not just a quick look.", "s1": "How many booked demos actually took place.", "s2": "How many leads become meetings, deals and customers.", "s3": "How many new contacts were added.", "s4": "How many new leads weren’t called within a day.", "s5": "The average number of calls each new lead gets.", "s6": "How many calls the team makes, and how many go to voicemail.", "r1": "How people move through each step of the online application, and where they drop off.", "r2": "How many visitors are prospects, and how many are existing customers.", "r3": "How often customers log in.", "l7": "What it costs in ads to create each sales opportunity."};const UPD={"w1": "Daily", "w2": "Daily", "w3": "Daily", "w4": "Daily", "w5": "Daily", "w6": "Daily", "w7": "Every hour", "l1": "Every hour", "l2": "Every hour", "l3": "Every hour", "l4": "Daily (ad data can take up to 48 hours)", "l5": "Daily (ad data can take up to 48 hours)", "l6": "Daily", "p1": "Every hour", "p2": "Daily", "p3": "Daily", "p4": "Daily", "p5": "Live", "p6": "Daily", "c1": "Daily", "c2": "Daily", "c3": "Daily", "c4": "Daily", "s1": "Every hour", "s2": "Daily", "s3": "Every hour", "s4": "Daily", "s5": "Daily", "s6": "Daily", "r1": "Daily", "r2": "Daily", "r3": "Daily", "l7": "Daily (ad data can take up to 48 hours)"};
 const $=s=>document.querySelector(s);let team='web',sel=null;
 function esc(t){return String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 const TEAL='#00A4BD',CORAL='#FF5C35',PAL=['#00A4BD','#FF7A59','#7FD1DE','#CBD6E2'];
@@ -498,12 +582,28 @@ function render(){
    <div class="sd-f"><i>Updates</i><b>${UPD[m[0]]||'Daily'}${m[8]==='HubSpot'?'':' · opens in '+esc(m[8].replace(', linked',''))}</b></div>`;})()
   :`<div class="sd-empty"><b>Click any report</b><span>to see where its data comes from and how we set it up.</span><div class="sd-lg"><span><i style="background:#F5A623"></i>After our setup</span><span><i style="background:#A3B4C6"></i>Opens in GA4 or Heap</span><span><i style="background:transparent;border:1.5px solid rgba(255,255,255,.5)"></i>Works straight away</span></div></div>`;
  $('#hs').innerHTML=`<div class="hs-bar"><i></i>${t[1]} dashboard<span>Last 30 days · sample numbers</span></div>
- <div class="hs-grid">${ms.map(m=>`<button class="hs-tile ${sel===m[0]?'sel':''}" style="grid-column:span ${SPAN[SAMPLE[m[0]][0]]}" data-m="${m[0]}"><div class="tt">${esc(m[2])}${m[4]!=='Ready'?`<span class="dot ${m[4]==='Linked'?'g':'a'}" title="${m[4]}"></span>`:''}</div>${body(m)}</button>`).join('')}</div>`;
+ <div class="hs-grid">${ms.map((m,ix)=>`<button class="hs-tile ${sel===m[0]?'sel':''} ${(ms.length%3===1&&ix===ms.length-1)?'wide':''}" style="grid-column:span ${SPAN[SAMPLE[m[0]][0]]}" data-m="${m[0]}"><div class="tt">${esc(m[2])}${m[4]!=='Ready'?`<span class="dot ${m[4]==='Linked'?'g':'a'}" title="${m[4]}"></span>`:''}</div>${body(m)}</button>`).join('')}</div>`;
  $('#side').innerHTML=side;
  $('#det').hidden=true;$('#hint').hidden=true;}
 document.addEventListener('click',e=>{const tb=e.target.closest('[data-t]');if(tb){team=tb.dataset.t;sel=null;render();return;}
  const m=e.target.closest('[data-m]');if(m){sel=sel===m.dataset.m?null:m.dataset.m;render();}});
 render();
+</script>
+<script>
+(function(){
+ var COL={'Ready':'#4FD18B','After setup':'#E8A23D','Linked':'#A3B4C6'};
+ var NOTE={'Ready':'Work as soon as the dashboards are built','After setup':'We fix, connect or repair the tracking first','Linked':'Built in GA4 or Heap, one click from the dashboard','all':'Every metric agreed with your team, by status'};
+ var box=document.getElementById('catlist'),cur=null;
+ function show(cat){
+  document.querySelectorAll('button.w4c').forEach(function(b){var on=b.dataset.cat===cat;b.classList.toggle('on',on);b.setAttribute('aria-expanded',on);b.querySelector('.w4h').textContent=on?'Hide':'See which metrics';});
+  if(!cat){box.hidden=true;cur=null;return;}
+  cur=cat;var ms=METS.filter(function(m){return cat==='all'||m[4]===cat});
+  var groups=TEAMS.map(function(t){return [t,ms.filter(function(m){return m[1]===t[0]})]}).filter(function(g){return g[1].length});
+  box.innerHTML='<div class="ch"><b>'+(cat==='all'?'All 33 metrics':cat+' · '+ms.length+' metrics')+'</b><span>'+NOTE[cat]+'</span></div><div class="cg">'+groups.map(function(g){return '<div class="tm"><h5><span>'+g[0][1]+'</span><span>'+g[1].length+'</span></h5><ul>'+g[1].map(function(m){return '<li><i style="background:'+COL[m[4]]+'"></i>'+m[2]+'</li>'}).join('')+'</ul></div>'}).join('')+'</div>'+(cat==='all'?'<div class="later"><b>Later phase:</b> account use (which product features customers use), as agreed.</div>':'');
+  box.hidden=false;
+ }
+ document.querySelectorAll('button.w4c').forEach(function(b){b.addEventListener('click',function(){show(cur===b.dataset.cat?null:b.dataset.cat)})});
+})();
 </script>
 </body>
 </html>
